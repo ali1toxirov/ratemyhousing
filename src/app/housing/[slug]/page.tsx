@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, BedDouble, Car, Check, DollarSign, ExternalLink, Footprints, GraduationCap, MapPin } from "lucide-react";
+import { ArrowLeft, BedDouble, Car, Check, DollarSign, ExternalLink, Footprints, GraduationCap, MapPin, Users } from "lucide-react";
 import { HousingCover } from "@/components/housing-card";
 import { buttonVariants } from "@/components/ui/button";
 import { formatPrice, getHousing, housing } from "@/data/housing";
@@ -31,6 +31,11 @@ export default async function HousingDetailPage({ params }: PageProps<"/housing/
     { icon: Footprints, label: "Walk to Bell Tower", value: `~${place.walkMinutes} minutes` },
     { icon: BedDouble, label: "Room types", value: place.roomTypes.join(", ") },
     { icon: GraduationCap, label: "Freshmen", value: place.freshmen ? "Open to first-years" : "Sophomores and up" },
+    {
+      icon: Users,
+      label: "Staff",
+      value: place.type === "on-campus" ? "RAs live in the hall" : "No RAs · property staff",
+    },
     { icon: Car, label: "Parking", value: place.parking.summary },
   ];
 

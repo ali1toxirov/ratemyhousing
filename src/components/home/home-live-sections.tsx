@@ -38,10 +38,9 @@ export function LiveStats() {
   const stats = [
     { label: "Places rated", value: housing.length },
     { label: "Student reviews", value: reviews.length },
-    { label: "Would recommend", value: `${summarize(reviews).recommendPct}%` },
   ];
   return (
-    <dl className="grid grid-cols-3 gap-4 sm:max-w-lg">
+    <dl className="grid grid-cols-2 gap-4 sm:max-w-xs">
       {stats.map((s) => (
         <div key={s.label}>
           <dt className="text-xs text-white/70 sm:text-sm">{s.label}</dt>

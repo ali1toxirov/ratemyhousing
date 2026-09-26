@@ -32,7 +32,8 @@ const checklist = [
   "Laundry bag and detergent",
   "Command hooks (no nails allowed in dorms)",
   "Small first-aid kit and basic meds",
-  "Door stop for the first week so people can say hi",
+  "A small trash can and trash bags. You take out your own trash, and the room does not come with a bin.",
+  "Disinfecting wipes and a few hangers. The closet is empty.",
 ];
 
 const faqs = [

@@ -50,7 +50,7 @@ export const housing: Housing[] = [
     amenities: ["A/C", "Full kitchen", "Private bathroom", "Dining hall on site", "Laundry in building", "Skyline views"],
     bestFor: "Students who want an on-campus apartment on Broad Street",
     description:
-      "A three-building complex for first-years through seniors. Morgan North (1601 N Broad) is 27 stories and Morgan South (1603 N Broad) is 10. Every unit is a 1-, 2-, or 3-bedroom apartment with its own bathroom and a full kitchen. Temple describes the towers as having skyline views, and the dining hall is in the complex. 2026–27 semester rates run from $7,270 to $8,715.",
+      "A three-building complex for first-years through seniors. Morgan North (1601 N Broad) is 27 stories and Morgan South (1603 N Broad) is 10. Every unit is a 1-, 2-, or 3-bedroom apartment with its own bathroom and a full kitchen. Temple describes the towers as having skyline views, and the dining hall is in the complex. Resident Assistants still live here, and a Resident Director runs each tower. A kitchen does not make this a private apartment. First-years and transfers must buy at least 12 meals a week. Returning students can skip the meal plan and cook. 2026–27 semester rates run from $7,270 to $8,715.",
     freshmen: true,
     website: { url: "https://studentaffairs.temple.edu/housing", label: "Apply for housing" },
     image: {
@@ -76,7 +76,7 @@ export const housing: Housing[] = [
     amenities: ["A/C", "Private bathroom", "Kitchens on floors 4–5", "Laundry in building", "Study lounges"],
     bestFor: "First-years who want suite living, or returning students who want a kitchen",
     description:
-      "A 5-story hall for about 1,050 students, from first-year through senior. Floors 1–3 are suites and studios without kitchens. Floors 4 and 5 are apartments with full kitchens and are usually taken by returning students. Every unit has its own bathroom, and there is a community kitchen on the ground floor. 2026–27 semester rates run from $6,041 to $7,978.",
+      "A 5-story hall for about 1,050 students, from first-year through senior. Floors 1–3 are suites and studios without kitchens. Floors 4 and 5 are apartments with full kitchens and are usually taken by returning students. Every unit has its own bathroom, and there is a community kitchen on the ground floor. Resident Assistants live in the building. New students on the suite floors have nowhere to cook a real meal, so they must buy at least 12 meals a week. Returning students upstairs are not required to. 2026–27 semester rates run from $6,041 to $7,978.",
     freshmen: true,
     website: { url: "https://studentaffairs.temple.edu/housing", label: "Apply for housing" },
     parking: campusParking,
@@ -96,7 +96,7 @@ export const housing: Housing[] = [
     amenities: ["A/C", "Community bathrooms", "Esposito Dining Hall", "Laundry in building", "Floor lounges"],
     bestFor: "First-years who want a traditional hall at the lowest on-campus rate",
     description:
-      "Twin 11-story halls aimed at first-years, about 465 students each. Bathrooms are shared by the floor and cleaned daily. Bedrooms have heat and air conditioning, and there is no kitchen in the room. The Luis J. Esposito Dining Hall is in the building. 2026–27 semester rates are $5,158 for a double and $5,726 for a single.",
+      "Twin 11-story halls aimed at first-years, about 465 students each. Bathrooms are shared by the floor and cleaned daily. Bedrooms have heat and air conditioning, and there is no kitchen in the room. Resident Assistants live on the floors. They are who you find for a lockout, a roommate problem, or someone on duty at night. Because you cannot cook in the room, new students must take at least 12 meals a week, and most of them eat downstairs at the Luis J. Esposito Dining Hall. 2026–27 semester rates are $5,158 for a double and $5,726 for a single.",
     freshmen: true,
     website: { url: "https://studentaffairs.temple.edu/housing", label: "Apply for housing" },
     parking: campusParking,
@@ -116,7 +116,7 @@ export const housing: Housing[] = [
     amenities: ["A/C", "Suite bathroom", "Laundry in building", "Bike storage", "Community kitchen"],
     bestFor: "First-years who want a suite with their own bathroom",
     description:
-      "A 4-story suite hall for about 570 first-year students. You share a studio with one roommate or a 2-bedroom suite with three, and every suite has its own bathroom. There are no singles. A community kitchen is on the first floor. The 2026–27 double rate is $5,958 per semester.",
+      "A 4-story suite hall for about 570 first-year students. You share a studio with one roommate or a 2-bedroom suite with three, and every suite has its own bathroom. There are no singles. A community kitchen on the first floor is for snacks, not a replacement for a dining plan. Resident Assistants live in the hall, and every resident is a new student, so at least 12 meals a week is required. The 2026–27 double rate is $5,958 per semester.",
     freshmen: true,
     website: { url: "https://studentaffairs.temple.edu/housing", label: "Apply for housing" },
     parking: campusParking,
@@ -136,7 +136,7 @@ export const housing: Housing[] = [
     amenities: ["Full kitchen", "Private bathroom", "A/C", "Laundry in building", "Study lounges"],
     bestFor: "Students who want an on-campus apartment with a kitchen",
     description:
-      "A 6-story apartment hall for about 658 students, from first-year through senior. Units are 1- to 4-bedroom apartments with a full kitchen and at least one bathroom. Temple Towers East is 1200 Cecil B. Moore Ave and West is 1250. 2026–27 semester rates run from $6,556 to $8,475.",
+      "A 6-story apartment hall for about 658 students, from first-year through senior. Units are 1- to 4-bedroom apartments with a full kitchen and at least one bathroom. Temple Towers East is 1200 Cecil B. Moore Ave and West is 1250. It feels like an apartment, but it is still University Housing: Resident Assistants live in the building and a Resident Director runs it. New students must buy at least 12 meals a week. Returning students can opt out and cook. 2026–27 semester rates run from $6,556 to $8,475.",
     freshmen: true,
     website: { url: "https://studentaffairs.temple.edu/housing", label: "Apply for housing" },
     parking: {
@@ -160,7 +160,7 @@ export const housing: Housing[] = [
     amenities: ["A/C", "Suite bathroom", "Laundry in building", "Study lounges", "Community kitchen"],
     bestFor: "First-years who want a suite on Liacouras Walk",
     description:
-      "A 5-story suite hall for about 472 first-year students, sitting on Liacouras Walk. Suites are a 1-bedroom double or a 2-bedroom for four people, and each suite has its own bathroom. There are no singles. A community kitchen is on the ground floor. The 2026–27 double rate is $6,104 per semester.",
+      "A 5-story suite hall for about 472 first-year students, sitting on Liacouras Walk, a short walk from the Bell Tower and the main classroom buildings. Suites are a 1-bedroom double or a 2-bedroom for four people, and each suite has its own bathroom. There are no singles. Resident Assistants live in the hall. The community kitchen on the ground floor is shared, and new students must buy at least 12 meals a week. The 2026–27 double rate is $6,104 per semester.",
     freshmen: true,
     website: { url: "https://studentaffairs.temple.edu/housing", label: "Apply for housing" },
     parking: campusParking,
@@ -180,7 +180,7 @@ export const housing: Housing[] = [
     amenities: ["Furnished", "Fitness center", "Laundry in building", "Community Wi-Fi"],
     bestFor: "Students who want a furnished apartment at Avenue North",
     description:
-      "Formerly The Edge at Avenue North. Furnished studios and two-bedroom suites next to campus, leased by the person. Listed rents are about $949–$1,800. The building has a fitness center, laundry, and community Wi-Fi.",
+      "Formerly The Edge at Avenue North. Furnished studios and two-bedroom suites next to campus, leased by the person. Listed rents are about $949–$1,800. The building has a fitness center, laundry, and community Wi-Fi. There are no Resident Assistants. Maintenance and roommate issues go to the leasing office, not a Temple staff member on your floor. Each unit has a place to cook, and a meal plan is optional.",
     freshmen: true,
     website: {
       url: "https://www.apartments.com/avery-philly-philadelphia-pa/1kd7cz7/",
@@ -207,7 +207,7 @@ export const housing: Housing[] = [
     amenities: ["Furnished", "Sky lounge", "24/7 fitness center", "Study rooms", "24-hour front desk"],
     bestFor: "Students who want a furnished high-rise steps from campus",
     description:
-      "A furnished high-rise at 1100 W Montgomery Ave, which the property describes as steps from campus. Floor plans are studios and 2-, 3-, and 4-bedroom apartments, leased by the bedroom. A shared room in a 3-bedroom is advertised at $849 for the 2026–27 year; current listings also run up to about $2,129 for private rooms and studios. Amenities include a 14th-floor sky lounge, a 24/7 fitness center, study rooms, and a 24-hour front desk. First-years can join the First Year Flock program.",
+      "A furnished high-rise at 1100 W Montgomery Ave, which the property describes as steps from campus. Floor plans are studios and 2-, 3-, and 4-bedroom apartments, leased by the bedroom. A shared room in a 3-bedroom is advertised at $849 for the 2026–27 year; current listings also run up to about $2,129 for private rooms and studios. Amenities include a 14th-floor sky lounge, a 24/7 fitness center, study rooms, and a 24-hour front desk. There are no Temple RAs. That front desk works for the apartment company. First Year Flock is the building's own program for freshmen, not a residence-hall floor. You cook in the apartment, and a meal plan is optional.",
     freshmen: true,
     website: { url: "https://www.theviewatmontgomery.com/floor-plans", label: "Start a lease" },
     parking: {
@@ -231,7 +231,7 @@ export const housing: Housing[] = [
     amenities: ["Furnished", "18th-floor sky lounge", "Fitness center", "Laundry on each floor", "Wi-Fi"],
     bestFor: "Students who want a furnished high-rise with utilities in the rent",
     description:
-      "Furnished studios and 1- to 4-bedroom apartments at 1717 N 12th St, about a 6-minute walk to Main Campus. Listed bedroom rents run about $929–$2,699. The property says rent includes gas, water, sewer, trash, and wireless internet, plus furniture. Laundry is on each floor, and there is a fitness center and a sky lounge on the 18th floor.",
+      "Furnished studios and 1- to 4-bedroom apartments at 1717 N 12th St, about a 6-minute walk to Main Campus. Listed bedroom rents run about $929–$2,699. The property says rent includes gas, water, sewer, trash, and wireless internet, plus furniture. Laundry is on each floor, and there is a fitness center and a sky lounge on the 18th floor. There are no RAs. You sign with the property and send maintenance requests to them. A Temple meal plan is optional.",
     freshmen: true,
     website: { url: "https://www.pursuevantage.com/floor-plans", label: "Start a lease" },
     parking: {
@@ -256,7 +256,7 @@ export const housing: Housing[] = [
     amenities: ["Furnished options", "Gated parking ($100/mo)", "Fitness center", "Laundry rooms", "A/C"],
     bestFor: "Students who want a regular apartment within two blocks of campus",
     description:
-      "Apartments at 1612 N 15th St, within two blocks of campus. These prices are for the whole apartment, not one bedroom: one-bedrooms start at $1,225, two-bedrooms at $1,425 (about $713 per person), and three-bedrooms at $1,815. Furnished and unfurnished units are available. Gated parking is $100 a month. The property lists water, sewer, trash, and Wi-Fi as included, and the FAQ also mentions possible monthly fees, so read the lease.",
+      "Apartments at 1612 N 15th St, within two blocks of campus. These prices are for the whole apartment, not one bedroom: one-bedrooms start at $1,225, two-bedrooms at $1,425 (about $713 per person), and three-bedrooms at $1,815. Furnished and unfurnished units are available. Gated parking is $100 a month. The property lists water, sewer, trash, and Wi-Fi as included, and the FAQ also mentions possible monthly fees, so read the lease. There are no RAs. Roommates split one lease with the property, and a meal plan is optional.",
     freshmen: true,
     website: {
       url: "https://oxfordvillageapts.com/",
@@ -282,7 +282,7 @@ export const housing: Housing[] = [
     amenities: ["Furnished", "24-hour fitness center", "Academic Success Center", "Internet included", "Individual leases"],
     bestFor: "Students who want a furnished apartment with a lower per-bedroom rent",
     description:
-      "Furnished apartments at 1701 N 10th St, about an 8-minute walk to Main Campus. Listed rents run from $479 a bedroom in a shared 2-bedroom up to $1,494 for a 1-bedroom. Leases are individual. The building has a 24-hour fitness center and an Academic Success Center. Internet, recycling, and trash are included; other utilities are not listed as included.",
+      "Furnished apartments at 1701 N 10th St, about an 8-minute walk to Main Campus. Listed rents run from $479 a bedroom in a shared 2-bedroom up to $1,494 for a 1-bedroom. Leases are individual. The building has a 24-hour fitness center and an Academic Success Center. Internet, recycling, and trash are included; other utilities are not listed as included. There are no RAs. Each person signs with the property, and a meal plan is optional.",
     freshmen: true,
     website: {
       url: "https://portal.tkclients.com/application?lease_type=NEW_LEASE_APPLICATION&prop_code=380",
@@ -309,7 +309,7 @@ export const housing: Housing[] = [
     amenities: ["Furnished", "Smart locks", "Fitness center", "Study rooms", "Movie theater", "Laundry on site"],
     bestFor: "Students who want a furnished apartment about 8 minutes from campus",
     description:
-      "Furnished 2- and 4-bedroom apartments at 1000 Diamond St, an 8-minute walk to Main Campus. Current per-bedroom listings run about $675–$800, and the property site advertises 2026–27 rents starting at $760. The building has smart locks, a fitness center, study rooms, a movie theater, and laundry. Water, internet, and trash are typically included.",
+      "Furnished 2- and 4-bedroom apartments at 1000 Diamond St, an 8-minute walk to Main Campus. Current per-bedroom listings run about $675–$800, and the property site advertises 2026–27 rents starting at $760. The building has smart locks, a fitness center, study rooms, a movie theater, and laundry. Water, internet, and trash are typically included. There are no RAs. You lease a bedroom from the property and cook in the apartment. The building does not sell a meal plan.",
     freshmen: true,
     website: { url: "https://www.templecrossing.com/", label: "Start a lease" },
     parking: {
@@ -332,7 +332,7 @@ export const housing: Housing[] = [
     amenities: ["A/C", "Fitness center", "Laundry rooms", "24/7 front desk", "Study areas"],
     bestFor: "Students who want a 2- to 5-bedroom apartment near the train station",
     description:
-      "More than 240 apartments at 1801 N 10th St, about three blocks from campus and next to the Temple University train station. Floor plans run from 1 to 5 bedrooms. Currently advertised rents are $820–$860 for a 2-bedroom, $825–$850 for a 4-bedroom, and $800–$900 for a 5-bedroom; 1- and 3-bedrooms were sold out on the site. Furniture is optional and extra. Sewage and trash are included; water and electric are billed separately. There is a fitness center, laundry, and a 24/7 front desk.",
+      "More than 240 apartments at 1801 N 10th St, about three blocks from campus and next to the Temple University train station. Floor plans run from 1 to 5 bedrooms. Currently advertised rents are $820–$860 for a 2-bedroom, $825–$850 for a 4-bedroom, and $800–$900 for a 5-bedroom; 1- and 3-bedrooms were sold out on the site. Furniture is optional and extra. Sewage and trash are included; water and electric are billed separately. There is a fitness center, laundry, and a 24/7 front desk. There are no Temple RAs. That desk works for the landlord. A meal plan is optional.",
     freshmen: true,
     website: { url: "https://kardon-atlantic.com/apartments/", label: "Start a lease" },
     parking: {
@@ -355,7 +355,7 @@ export const housing: Housing[] = [
     amenities: ["Furnished", "Utilities included", "A/C", "Laundry on site"],
     bestFor: "Students who want utilities bundled in a building next to campus",
     description:
-      "Furnished 1- and 2-bedroom apartments at 1520 Cecil B. Moore Ave. The property describes it as one block from campus; Temple's listing puts Main Campus at about an 8-minute walk. Listed rents are $1,350 for a 1-bedroom and $725–$1,350 per bedroom for a 2-bedroom. A one-time utility payment covers water, electricity, internet, cable, trash, and sewer. Laundry is in the building.",
+      "Furnished 1- and 2-bedroom apartments at 1520 Cecil B. Moore Ave. The property describes it as one block from campus; Temple's listing puts Main Campus at about an 8-minute walk. Listed rents are $1,350 for a 1-bedroom and $725–$1,350 per bedroom for a 2-bedroom. A one-time utility payment covers water, electricity, internet, cable, trash, and sewer. Laundry is in the building. There are no RAs. You rent from the property, and a meal plan is optional.",
     freshmen: true,
     website: {
       url: "https://offcampus.temple.edu/housing/property/beech-international/ocp11z2vr4",
@@ -381,7 +381,7 @@ export const housing: Housing[] = [
     amenities: ["In-unit washer and dryer", "Private bathroom per bedroom", "A/C", "Fitness room"],
     bestFor: "Roommates who want a washer and dryer in the apartment",
     description:
-      "1- and 2-bedroom apartments at 1500 N 15th St, about an 11-minute walk to Main Campus. Each apartment has a washer and dryer and a private bathroom in each bedroom. Listed rents are $1,195–$1,295 for a 1-bedroom and $795–$900 per bedroom for a 2-bedroom. Assigned parking is $100 a month.",
+      "1- and 2-bedroom apartments at 1500 N 15th St, about an 11-minute walk to Main Campus. Each apartment has a washer and dryer and a private bathroom in each bedroom. Listed rents are $1,195–$1,295 for a 1-bedroom and $795–$900 per bedroom for a 2-bedroom. Assigned parking is $100 a month. There are no RAs. You lease from the property and cook at home, so a meal plan is optional.",
     freshmen: true,
     website: {
       url: "https://offcampus.temple.edu/housing/property/university-apartments/ocpmtblt9k",
