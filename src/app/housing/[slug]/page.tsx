@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, BedDouble, Bus, Car, Check, DollarSign, ExternalLink, Footprints, GraduationCap, MapPin, Users } from "lucide-react";
+import { ArrowLeft, BedDouble, Car, Check, DollarSign, ExternalLink, Footprints, GraduationCap, MapPin, Users } from "lucide-react";
 import { HousingCover } from "@/components/housing-card";
 import { buttonVariants } from "@/components/ui/button";
 import { formatPrice, getHousing, housing } from "@/data/housing";
@@ -99,36 +99,23 @@ export default async function HousingDetailPage({ params }: PageProps<"/housing/
               ))}
             </ul>
           </div>
-          {place.transit && (
-            <div className="mt-6">
-              <h2 className="text-sm font-semibold">Getting to campus</h2>
-              <ul className="mt-2 space-y-2">
-                {place.transit.routes.map((route) => (
-                  <li key={route.name} className="flex gap-2 text-sm">
-                    <Bus className="mt-0.5 size-4 shrink-0 text-primary" />
-                    <span>
-                      <span className="font-medium">{route.name}.</span> {route.detail}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-3 text-sm text-muted-foreground">
-                Full-time Main Campus students can buy a semester SEPTA pass at a 10% discount.{" "}
-                <a
-                  href="https://bursar.temple.edu/payments/septa-semester-pass-program"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="font-medium text-primary hover:underline"
-                >
-                  See how to get a student pass
-                </a>
-                .
-              </p>
-            </div>
+          {place.type === "off-campus" && (
+            <p className="mt-6 text-sm text-muted-foreground">
+              Full-time Main Campus students can buy a semester SEPTA pass at a 10% discount.{" "}
+              <a
+                href="https://bursar.temple.edu/payments/septa-semester-pass-program"
+                target="_blank"
+                rel="noreferrer"
+                className="font-medium text-primary hover:underline"
+              >
+                See how to get a student pass
+              </a>
+              .
+            </p>
           )}
           <p className="mt-6 text-sm text-muted-foreground">{place.parking.detail}</p>
           <p className="mt-3 text-xs text-muted-foreground">
-            On-campus rates are Temple&apos;s published 2026–27 semester prices. Apartment figures are current advertised rents and can change. Confirm rent, parking, and SEPTA schedules before you rely on them.
+            On-campus rates are Temple&apos;s published 2026–27 semester prices. Apartment figures are current advertised rents and can change. Confirm rent and parking before you rely on them.
           </p>
         </div>
 

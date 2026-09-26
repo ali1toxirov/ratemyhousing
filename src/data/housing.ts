@@ -23,14 +23,6 @@ export type Housing = {
   /** Freely licensed photo. Omitted when none is available. */
   image?: { src: string; alt: string; credit: string; creditHref: string };
   parking: { summary: string; detail: string };
-  /** How to reach Main Campus. Set for off-campus listings. */
-  transit?: { summary: string; routes: { name: string; detail: string }[] };
-};
-
-const flight = {
-  name: "Temple Flight",
-  detail:
-    "Free nighttime shuttle for anyone with a Temple ID, about 6 p.m. to 2 a.m. It loops the Main Campus patrol zone. Use the TransLoc app to find the nearest stop.",
 };
 
 // On-campus rooms do not include a spot. Overnight permits are sold by Temple Parking Services.
@@ -199,20 +191,6 @@ export const housing: Housing[] = [
       detail:
         "Avery Philly has offered on-site parking for a fee, and it is not included in rent. There is no current public price, so confirm a spot and the rate before you sign.",
     },
-    transit: {
-      summary: "Route 3 · Broad Street Line",
-      routes: [
-        {
-          name: "SEPTA Route 3",
-          detail: "Stops on Cecil B. Moore Avenue at 15th Street, about a block south, and rides east to Broad Street at the edge of campus.",
-        },
-        {
-          name: "Broad Street Line",
-          detail: "Cecil B. Moore station is a short walk east. Buses 4 and 16 also stop on Broad at Cecil B. Moore, Montgomery, and Polett Walk.",
-        },
-        flight,
-      ],
-    },
     gradient: "from-slate-700 to-slate-900",
   },
   {
@@ -237,24 +215,6 @@ export const housing: Housing[] = [
       detail:
         "Gated parking is available and not included in rent. A surface-lot spot is listed around $169 a month.",
     },
-    transit: {
-      summary: "Route 23 · buses 4 & 16",
-      routes: [
-        {
-          name: "SEPTA Route 23",
-          detail: "Runs northbound on 11th Street and southbound on 12th, with stops at Montgomery, Polett Walk, and Cecil B. Moore.",
-        },
-        {
-          name: "Buses 4 and 16",
-          detail: "Both run on Broad Street and stop at Montgomery Avenue, a few blocks west, plus Polett Walk and Cecil B. Moore.",
-        },
-        {
-          name: "Broad Street Line",
-          detail: "Cecil B. Moore station is a short walk south along Broad from Montgomery.",
-        },
-        flight,
-      ],
-    },
     gradient: "from-sky-800 to-indigo-950",
   },
   {
@@ -278,20 +238,6 @@ export const housing: Housing[] = [
       summary: "Paid · about $169/month",
       detail:
         "A surface-lot spot is listed around $169 a month, and other options run closer to $199. Parking is not included in rent.",
-    },
-    transit: {
-      summary: "Route 23 · Broad Street Line",
-      routes: [
-        {
-          name: "SEPTA Route 23",
-          detail: "The building is on 12th Street, which Route 23 uses southbound. Stops at Montgomery, Polett Walk, and Cecil B. Moore put you on campus.",
-        },
-        {
-          name: "Broad Street Line",
-          detail: "Cecil B. Moore station is a few blocks west. Buses 4 and 16 stop along Broad at those same campus corners.",
-        },
-        flight,
-      ],
     },
     gradient: "from-zinc-700 to-neutral-900",
   },
@@ -320,20 +266,6 @@ export const housing: Housing[] = [
       summary: "Paid · $100/month",
       detail: "Gated parking is $100 a month per space. It is not included in rent.",
     },
-    transit: {
-      summary: "Route 3 · Broad Street Line",
-      routes: [
-        {
-          name: "SEPTA Route 3",
-          detail: "Stops on Cecil B. Moore Avenue at 15th Street, about a block south, and rides east to Broad Street.",
-        },
-        {
-          name: "Broad Street Line",
-          detail: "Cecil B. Moore station is a short walk east. Buses 4 and 16 stop on Broad at Cecil B. Moore, Montgomery, and Polett Walk.",
-        },
-        flight,
-      ],
-    },
     gradient: "from-emerald-800 to-teal-950",
   },
   {
@@ -361,20 +293,6 @@ export const housing: Housing[] = [
       detail:
         "University Village has assigned parking and charges for it separately from rent. The current price is not listed publicly, so confirm it with the leasing office.",
     },
-    transit: {
-      summary: "Regional Rail · Route 23",
-      routes: [
-        {
-          name: "Regional Rail",
-          detail: "Temple University Station is a short walk north, at 10th and Berks. Most Regional Rail lines that pass through Center City stop there.",
-        },
-        {
-          name: "SEPTA Route 23",
-          detail: "One block west, on 11th and 12th Streets, with stops at Montgomery, Polett Walk, and Cecil B. Moore.",
-        },
-        flight,
-      ],
-    },
     gradient: "from-indigo-800 to-slate-950",
   },
   {
@@ -398,20 +316,6 @@ export const housing: Housing[] = [
       summary: "Not listed with rent",
       detail: "Current listings do not say whether Temple Crossing includes a parking spot or what it costs. Ask the office before you count on a car.",
     },
-    transit: {
-      summary: "Route 39 · Broad Street Line",
-      routes: [
-        {
-          name: "SEPTA Route 39",
-          detail: "Stops at 10th Street on Dauphin and on Susquehanna, about a block from Diamond. The westbound bus reaches the Broad Street Line at Susquehanna-Dauphin, at the north end of campus.",
-        },
-        {
-          name: "Broad Street Line",
-          detail: "Susquehanna-Dauphin station is a few blocks west on Broad. Cecil B. Moore station is farther south if you are heading to the middle of campus.",
-        },
-        flight,
-      ],
-    },
     gradient: "from-violet-800 to-purple-950",
   },
   {
@@ -434,20 +338,6 @@ export const housing: Housing[] = [
     parking: {
       summary: "Not listed with rent",
       detail: "Current listings do not include a parking spot with the apartment. Ask the office before you count on a car.",
-    },
-    transit: {
-      summary: "Regional Rail · Route 23",
-      routes: [
-        {
-          name: "Regional Rail",
-          detail: "Temple University Station is next to the building, at 10th and Berks. Most Regional Rail lines that pass through Center City stop there, and campus is a short walk south.",
-        },
-        {
-          name: "SEPTA Route 23",
-          detail: "One block west, on 11th and 12th Streets, with stops at Montgomery, Polett Walk, and Cecil B. Moore.",
-        },
-        flight,
-      ],
     },
     gradient: "from-cyan-800 to-slate-950",
   },
@@ -475,20 +365,6 @@ export const housing: Housing[] = [
       summary: "Not listed with rent",
       detail: "Current listings do not say whether Beech International Village includes a parking spot or what it costs. Ask the office before you count on a car.",
     },
-    transit: {
-      summary: "Route 3 · Broad Street Line",
-      routes: [
-        {
-          name: "SEPTA Route 3",
-          detail: "The building is on Cecil B. Moore Avenue. Route 3 stops at 15th Street and at Broad Street, which is the west edge of campus.",
-        },
-        {
-          name: "Broad Street Line",
-          detail: "Cecil B. Moore station is about a block east, at Broad. Buses 4 and 16 stop there too, and also at Montgomery and Polett Walk.",
-        },
-        flight,
-      ],
-    },
     gradient: "from-teal-800 to-emerald-950",
   },
   {
@@ -514,20 +390,6 @@ export const housing: Housing[] = [
     parking: {
       summary: "Paid · $100/month",
       detail: "Assigned parking is $100 a month and is not included in the rent.",
-    },
-    transit: {
-      summary: "Route 3 · Broad Street Line",
-      routes: [
-        {
-          name: "SEPTA Route 3",
-          detail: "Stops on Cecil B. Moore Avenue at 15th Street, at the corner, and rides east to Broad Street.",
-        },
-        {
-          name: "Broad Street Line",
-          detail: "Cecil B. Moore station is about a block east. Buses 4 and 16 stop on Broad at Cecil B. Moore, Montgomery, and Polett Walk.",
-        },
-        flight,
-      ],
     },
     gradient: "from-orange-800 to-rose-950",
   },
