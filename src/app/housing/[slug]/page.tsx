@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, BedDouble, Car, Check, DollarSign, ExternalLink, Footprints, GraduationCap, MapPin, UserPlus, Users } from "lucide-react";
 import { HousingCover } from "@/components/housing-card";
 import { buttonVariants } from "@/components/ui/button";
-import { formatPrice, getHousing, guestPolicy, housing } from "@/data/housing";
+import { formatPrice, formatWithRequiredMealPlan, getHousing, guestPolicy, housing, requiredMealPlan } from "@/data/housing";
 import { cn } from "@/lib/utils";
 import { HousingReviews } from "./housing-reviews";
 
@@ -38,11 +38,15 @@ export default async function HousingDetailPage({ params }: PageProps<"/housing/
   if (!place) notFound();
   const guests = guestPolicy(place);
 
+  const withMealPlan = formatWithRequiredMealPlan(place);
   const facts = [
     {
       icon: DollarSign,
       label: "Price",
       value: `${formatPrice(place)} / ${place.pricePeriod}${place.priceBasis ? ` (${place.priceBasis})` : ""}`,
+      note: withMealPlan
+        ? `New students ${withMealPlan} / semester. That is this rent plus Temple’s required 12 meals a week ($${requiredMealPlan.semester.toLocaleString("en-US")}). Returning students can skip the plan.`
+        : undefined,
     },
     { icon: Footprints, label: "Walk to Bell Tower", value: `~${place.walkMinutes} minutes` },
     { icon: BedDouble, label: "Room types", value: place.roomTypes.join(", ") },
@@ -109,6 +113,9 @@ export default async function HousingDetailPage({ params }: PageProps<"/housing/
                   <f.icon className="size-3.5" /> {f.label}
                 </dt>
                 <dd className="mt-1 text-sm font-semibold">{f.value}</dd>
+                {"note" in f && f.note && (
+                  <p className="mt-1 text-xs font-normal leading-relaxed text-muted-foreground">{f.note}</p>
+                )}
               </div>
             ))}
           </dl>

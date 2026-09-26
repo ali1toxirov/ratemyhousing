@@ -422,10 +422,32 @@ export function guestPolicy(h: Housing) {
   return h.guests ?? (h.type === "on-campus" ? campusGuests : apartmentGuests);
 }
 
+const money = (n: number) => `$${n.toLocaleString("en-US")}`;
+
 export function formatPrice(h: Housing) {
-  const fmt = (n: number) => `$${n.toLocaleString("en-US")}`;
-  if (h.priceMin === h.priceMax) return fmt(h.priceMin);
-  return `${fmt(h.priceMin)}–${fmt(h.priceMax)}`;
+  if (h.priceMin === h.priceMax) return money(h.priceMin);
+  return `${money(h.priceMin)}–${money(h.priceMax)}`;
+}
+
+// New students in any on-campus unit must buy at least 12 meals a week.
+// Plan C is $2,389 per semester for 2026–27.
+// https://studentaffairs.temple.edu/housing/campus-living/dining/dining-plans
+export const requiredMealPlan = {
+  mealsPerWeek: 12,
+  semester: 2389,
+};
+
+export function mealPlanRequired(h: Housing) {
+  return h.type === "on-campus";
+}
+
+/** Room rate plus the required 12-meal plan. Null where a meal plan is optional. */
+export function formatWithRequiredMealPlan(h: Housing) {
+  if (!mealPlanRequired(h)) return null;
+  const min = h.priceMin + requiredMealPlan.semester;
+  const max = h.priceMax + requiredMealPlan.semester;
+  if (min === max) return money(min);
+  return `${money(min)}–${money(max)}`;
 }
 
 // Normalizes semester prices (≈4.5 months) to a monthly figure so on- and
@@ -433,4 +455,44 @@ export function formatPrice(h: Housing) {
 export function monthlyEstimate(h: Housing) {
   const avg = (h.priceMin + h.priceMax) / 2;
   return Math.round(h.pricePeriod === "semester" ? avg / 4.5 : avg);
+}
+
+function scrubNegatives(text: string) {
+  return text.replace(/\b(no|not|without)\s+[\w’'-]+/gi, " ");
+}
+
+/** Everything a student might type when looking for a place or a detail. */
+export function housingSearchText(h: Housing) {
+  const guests = guestPolicy(h);
+  const text = scrubNegatives(
+    [
+      h.name,
+      h.address,
+      h.style,
+      h.type === "on-campus" ? "on campus residence hall dorm" : "off campus apartment",
+      h.bestFor,
+      h.description,
+      h.tip,
+      h.roomTypes.join(" "),
+      h.amenities.join(" "),
+      h.parking.summary,
+      h.parking.detail,
+      guests.summary,
+      guests.detail,
+      h.priceBasis,
+      h.freshmen ? "freshman first-year freshman-friendly" : "returning students",
+      mealPlanRequired(h) ? "meal plan required 12 meals a week" : "",
+    ]
+      .filter(Boolean)
+      .join(" "),
+  ).toLowerCase();
+
+  return text.includes("fitness") ? `${text} gym` : text;
+}
+
+export function matchesHousingQuery(h: Housing, query: string) {
+  const words = query.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  if (words.length === 0) return true;
+  const text = housingSearchText(h);
+  return words.every((word) => text.includes(word));
 }

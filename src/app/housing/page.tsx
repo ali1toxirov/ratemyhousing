@@ -17,7 +17,7 @@ export default async function HousingPage({ searchParams }: PageProps<"/housing"
         description="Filter residence halls and apartments by type, price, and distance, then dig into real student reviews."
       />
       <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
-        <HousingBrowser initialQuery={q} initialType={type} />
+        <HousingBrowser key={`${q}-${type}`} initialQuery={q} initialType={type} />
       </div>
     </>
   );

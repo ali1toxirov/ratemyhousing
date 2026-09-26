@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { housing, monthlyEstimate } from "@/data/housing";
+import { housing, mealPlanRequired, monthlyEstimate, requiredMealPlan } from "@/data/housing";
 import { cn } from "@/lib/utils";
 
 const fields = [
@@ -24,7 +24,8 @@ export function BudgetCalculator() {
 
   const place = housing.find((h) => h.slug === slug)!;
   const rent = monthlyEstimate(place);
-  const total = rent + Object.values(costs).reduce((a, b) => a + b, 0);
+  const mealPlan = mealPlanRequired(place) ? Math.round(requiredMealPlan.semester / 4.5) : 0;
+  const total = rent + mealPlan + Object.values(costs).reduce((a, b) => a + b, 0);
   const diff = budget - total;
 
   return (
@@ -57,7 +58,11 @@ export function BudgetCalculator() {
                 value={costs[f.key]}
                 onChange={(e) => setCosts((c) => ({ ...c, [f.key]: Math.max(0, Number(e.target.value) || 0) }))}
               />
-              <p className="text-xs text-muted-foreground">{f.hint}</p>
+              <p className="text-xs text-muted-foreground">
+                {f.key === "food" && mealPlan
+                  ? "Groceries beyond the required meal plan"
+                  : f.hint}
+              </p>
             </div>
           ))}
         </div>
@@ -80,6 +85,12 @@ export function BudgetCalculator() {
             <span className="text-background/70">Housing (monthly avg)</span>
             <span className="font-semibold">${rent.toLocaleString()}</span>
           </div>
+          {mealPlan > 0 && (
+            <div className="flex justify-between gap-3">
+              <span className="text-background/70">Required meal plan</span>
+              <span>${mealPlan.toLocaleString()}</span>
+            </div>
+          )}
           {fields.map((f) => (
             <div key={f.key} className="flex justify-between">
               <span className="text-background/70">{f.label}</span>

@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { HousingCard } from "@/components/housing-card";
-import { housing, monthlyEstimate } from "@/data/housing";
+import { housing, matchesHousingQuery, monthlyEstimate } from "@/data/housing";
 import { summarize } from "@/lib/ratings";
 import { useReviews } from "@/lib/reviews-store";
 import { cn } from "@/lib/utils";
@@ -39,7 +39,7 @@ export function HousingBrowser({ initialQuery, initialType }: { initialQuery: st
     return housing
       .filter((h) => type === "all" || h.type === type)
       .filter((h) => !freshmenOnly || h.freshmen)
-      .filter((h) => !q || `${h.name} ${h.address} ${h.style}`.toLowerCase().includes(q))
+      .filter((h) => matchesHousingQuery(h, q))
       .map((h) => ({ h, summary: summarize(reviews.filter((r) => r.housingSlug === h.slug)) }))
       .sort((a, b) => {
         if (sort === "rating") return b.summary.average - a.summary.average;
@@ -63,7 +63,7 @@ export function HousingBrowser({ initialQuery, initialType }: { initialQuery: st
           <Input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search by name, street, or style"
+            placeholder="Search a name or a detail, like kitchen or parking"
             className="h-10 pl-9"
             aria-label="Search housing"
           />

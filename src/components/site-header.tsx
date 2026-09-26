@@ -1,10 +1,12 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, Moon, Sun } from "lucide-react";
+import { Menu, Moon, Search, Sun } from "lucide-react";
 import { Logo, navLinks } from "@/components/logo";
 import { buttonVariants } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 
@@ -31,35 +33,63 @@ function ThemeToggle() {
   );
 }
 
+function HeaderSearch({ className }: { className?: string }) {
+  const pathname = usePathname();
+  const [query, setQuery] = useState("");
+
+  useEffect(() => {
+    const current = new URLSearchParams(window.location.search).get("q") ?? "";
+    setQuery(pathname === "/housing" ? current : "");
+  }, [pathname]);
+
+  return (
+    <form action="/housing" className={cn("relative min-w-0", className)}>
+      <Search className="pointer-events-none absolute top-1/2 left-2.5 size-4 -translate-y-1/2 text-muted-foreground" />
+      <Input
+        name="q"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder="Parking, kitchen, gym"
+        aria-label="Search housing details"
+        className="h-9 pl-8"
+      />
+    </form>
+  );
+}
+
 export function SiteHeader() {
   const pathname = usePathname();
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
 
   return (
     <header className="sticky top-0 z-40 border-b bg-background/85 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <Logo />
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="flex h-16 items-center gap-4">
+          <div className="shrink-0">
+            <Logo />
+          </div>
 
-        <nav className="hidden items-center gap-1 lg:flex">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={cn(
-                "rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground",
-                isActive(link.href) && "bg-accent text-accent-foreground",
-              )}
-            >
-              {link.label}
+          <nav className="hidden shrink-0 items-center gap-1 lg:flex">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={cn(
+                  "whitespace-nowrap rounded-md px-2.5 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground",
+                  isActive(link.href) && "bg-accent text-accent-foreground",
+                )}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
+          <div className="ml-auto flex shrink-0 items-center gap-2">
+            <HeaderSearch className="hidden w-36 sm:block xl:w-48" />
+            <Link href="/reviews#write" className={cn(buttonVariants({ size: "lg" }), "hidden px-4 xl:inline-flex")}>
+              Write a review
             </Link>
-          ))}
-        </nav>
-
-        <div className="flex items-center gap-2">
-          <Link href="/reviews#write" className={cn(buttonVariants({ size: "lg" }), "hidden px-4 sm:inline-flex")}>
-            Write a review
-          </Link>
-          <ThemeToggle />
+            <ThemeToggle />
           <Sheet>
             <SheetTrigger
               className={cn(buttonVariants({ variant: "ghost", size: "icon-lg" }), "lg:hidden")}
@@ -92,7 +122,9 @@ export function SiteHeader() {
               </nav>
             </SheetContent>
           </Sheet>
+          </div>
         </div>
+        <HeaderSearch className="pb-3 sm:hidden" />
       </div>
     </header>
   );

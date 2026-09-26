@@ -3,13 +3,13 @@ import Link from "next/link";
 import { AlertTriangle, PiggyBank } from "lucide-react";
 import { PageHeader } from "@/components/page-header";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { formatPrice, housing, monthlyEstimate } from "@/data/housing";
+import { formatPrice, formatWithRequiredMealPlan, housing, monthlyEstimate, requiredMealPlan } from "@/data/housing";
 import { BudgetCalculator } from "./budget-calculator";
 
 export const metadata: Metadata = { title: "Pricing" };
 
 const hiddenCosts = [
-  { title: "Meal plans", body: "Most first-year halls require one. Plans are billed per semester on top of your room rate." },
+  { title: "Meal plans", body: "New students in every residence hall must buy at least 12 meals a week, $2,389 per semester on top of the room rate. Returning students can skip it." },
   { title: "Security deposits", body: "Off-campus leases usually ask for one month's rent up front, plus an application fee." },
   { title: "Utilities overages", body: "\"Utilities included\" often means capped. Heating in January can push you over the limit." },
   { title: "12-month leases", body: "Many apartments lease August to July, so you may pay rent for summer months you're not there." },
@@ -64,11 +64,23 @@ export default function PricingPage() {
                       </span>
                     </TableCell>
                     <TableCell className="hidden text-muted-foreground sm:table-cell">
-                      {formatPrice(h)} / {h.pricePeriod}
-                      {h.priceBasis ? ` (${h.priceBasis})` : ""}
+                      <div>
+                        {formatPrice(h)} / {h.pricePeriod}
+                        {h.priceBasis ? ` (${h.priceBasis})` : ""}
+                      </div>
+                      {formatWithRequiredMealPlan(h) && (
+                        <p className="mt-1 text-xs text-foreground">
+                          New students {formatWithRequiredMealPlan(h)} / semester
+                        </p>
+                      )}
                     </TableCell>
                     <TableCell className="pr-4 text-right font-semibold tabular-nums">
-                      ${monthlyEstimate(h).toLocaleString()}
+                      <div>${monthlyEstimate(h).toLocaleString()}</div>
+                      {formatWithRequiredMealPlan(h) && (
+                        <p className="mt-1 text-xs font-medium text-muted-foreground">
+                          {`New students $${(monthlyEstimate(h) + Math.round(requiredMealPlan.semester / 4.5)).toLocaleString()}`}
+                        </p>
+                      )}
                     </TableCell>
                   </TableRow>
                 ))}
@@ -76,8 +88,9 @@ export default function PricingPage() {
             </Table>
           </div>
           <p className="text-xs text-muted-foreground">
-            On-campus figures are Temple's 2026–27 semester rates, divided by 4.5 months for the monthly column. Apartment
-            rents are current advertised prices. Confirm before you sign.
+            On-campus figures are Temple&apos;s 2026–27 semester rates, divided by 4.5 months for the monthly column. The
+            new-student total adds the required 12-meal plan, $2,389 per semester. Apartment rents are current advertised
+            prices, and a meal plan is optional there. Confirm before you sign.
           </p>
         </section>
 
