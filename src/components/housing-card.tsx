@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Building2, Footprints, MessageSquare } from "lucide-react";
+import { Building2, Car, Footprints, MessageSquare } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { RatingBadge } from "@/components/rating-badge";
 import { formatPrice, type Housing } from "@/data/housing";
@@ -67,6 +67,10 @@ export function HousingCard({ housing, summary }: { housing: Housing; summary: R
           <RatingBadge value={summary.average} />
         </div>
         <p className="line-clamp-2 text-sm text-muted-foreground">{housing.bestFor}</p>
+        <p className="flex items-center gap-1 text-xs text-muted-foreground">
+          <Car className="size-3.5 shrink-0" />
+          {housing.parking.summary}
+        </p>
         <div className="mt-auto flex items-center justify-between border-t pt-3 text-xs text-muted-foreground">
           <span className="font-semibold text-foreground">
             {formatPrice(housing)}

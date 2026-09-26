@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, BedDouble, Check, DollarSign, ExternalLink, Footprints, GraduationCap, MapPin } from "lucide-react";
+import { ArrowLeft, BedDouble, Car, Check, DollarSign, ExternalLink, Footprints, GraduationCap, MapPin } from "lucide-react";
 import { HousingCover } from "@/components/housing-card";
 import { buttonVariants } from "@/components/ui/button";
 import { formatPrice, getHousing, housing } from "@/data/housing";
@@ -31,6 +31,7 @@ export default async function HousingDetailPage({ params }: PageProps<"/housing/
     { icon: Footprints, label: "Walk to Bell Tower", value: `~${place.walkMinutes} minutes` },
     { icon: BedDouble, label: "Room types", value: place.roomTypes.join(", ") },
     { icon: GraduationCap, label: "Freshmen", value: place.freshmen ? "Open to first-years" : "Sophomores and up" },
+    { icon: Car, label: "Parking", value: place.parking.summary },
   ];
 
   return (
@@ -72,7 +73,7 @@ export default async function HousingDetailPage({ params }: PageProps<"/housing/
             </a>
           )}
 
-          <dl className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <dl className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {facts.map((f) => (
               <div key={f.label} className="rounded-xl bg-muted/60 p-4">
                 <dt className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
@@ -93,8 +94,9 @@ export default async function HousingDetailPage({ params }: PageProps<"/housing/
               ))}
             </ul>
           </div>
-          <p className="mt-6 text-xs text-muted-foreground">
-            On-campus rates are Temple's published 2026–27 semester prices. Apartment figures are current advertised rents and can change. Confirm before you sign.
+          <p className="mt-6 text-sm text-muted-foreground">{place.parking.detail}</p>
+          <p className="mt-3 text-xs text-muted-foreground">
+            On-campus rates are Temple&apos;s published 2026–27 semester prices. Apartment figures are current advertised rents and can change. Confirm rent and parking with Temple Housing, Temple Parking Services, or the property before you sign.
           </p>
         </div>
 

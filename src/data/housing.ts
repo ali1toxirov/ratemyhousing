@@ -22,6 +22,14 @@ export type Housing = {
   website?: { url: string; label: string };
   /** Freely licensed photo. Omitted when none is available. */
   image?: { src: string; alt: string; credit: string; creditHref: string };
+  parking: { summary: string; detail: string };
+};
+
+// On-campus rooms do not include a spot. Overnight permits are sold by Temple Parking Services.
+const campusParking = {
+  summary: "Paid · $426/semester",
+  detail:
+    "A room does not include a parking spot. Students who bring a car buy an overnight permit for $426 per semester. Those permits work at the Montgomery, Liacouras, and Bell garages, plus the Temple Towers and Tyler lots.",
 };
 
 // On-campus prices are Temple's published 2026–27 semester rates.
@@ -51,6 +59,7 @@ export const housing: Housing[] = [
       credit: "ImagineerJC, CC0, via Wikimedia Commons",
       creditHref: "https://commons.wikimedia.org/wiki/File:Morgan_Hall_North_from_Morgan_Hall_South_in_2016.jpg",
     },
+    parking: campusParking,
     gradient: "from-rose-700 to-red-900",
   },
   {
@@ -70,6 +79,7 @@ export const housing: Housing[] = [
       "A 5-story hall for about 1,050 students, from first-year through senior. Floors 1–3 are suites and studios without kitchens. Floors 4 and 5 are apartments with full kitchens and are usually taken by returning students. Every unit has its own bathroom, and there is a community kitchen on the ground floor. 2026–27 semester rates run from $6,041 to $7,978.",
     freshmen: true,
     website: { url: "https://studentaffairs.temple.edu/housing", label: "Apply for housing" },
+    parking: campusParking,
     gradient: "from-red-800 to-rose-950",
   },
   {
@@ -89,6 +99,7 @@ export const housing: Housing[] = [
       "Twin 11-story halls aimed at first-years, about 465 students each. Bathrooms are shared by the floor and cleaned daily. Bedrooms have heat and air conditioning, and there is no kitchen in the room. The Luis J. Esposito Dining Hall is in the building. 2026–27 semester rates are $5,158 for a double and $5,726 for a single.",
     freshmen: true,
     website: { url: "https://studentaffairs.temple.edu/housing", label: "Apply for housing" },
+    parking: campusParking,
     gradient: "from-stone-600 to-stone-900",
   },
   {
@@ -108,6 +119,7 @@ export const housing: Housing[] = [
       "A 4-story suite hall for about 570 first-year students. You share a studio with one roommate or a 2-bedroom suite with three, and every suite has its own bathroom. There are no singles. A community kitchen is on the first floor. The 2026–27 double rate is $5,958 per semester.",
     freshmen: true,
     website: { url: "https://studentaffairs.temple.edu/housing", label: "Apply for housing" },
+    parking: campusParking,
     gradient: "from-red-700 to-orange-900",
   },
   {
@@ -127,6 +139,11 @@ export const housing: Housing[] = [
       "A 6-story apartment hall for about 658 students, from first-year through senior. Units are 1- to 4-bedroom apartments with a full kitchen and at least one bathroom. Temple Towers East is 1200 Cecil B. Moore Ave and West is 1250. 2026–27 semester rates run from $6,556 to $8,475.",
     freshmen: true,
     website: { url: "https://studentaffairs.temple.edu/housing", label: "Apply for housing" },
+    parking: {
+      summary: "Paid · $426/semester",
+      detail:
+        "The Temple Towers lot is one of Temple's overnight lots. A permit is still $426 per semester and is not included in the room rate.",
+    },
     gradient: "from-rose-800 to-pink-950",
   },
   {
@@ -146,6 +163,7 @@ export const housing: Housing[] = [
       "A 5-story suite hall for about 472 first-year students, sitting on Liacouras Walk. Suites are a 1-bedroom double or a 2-bedroom for four people, and each suite has its own bathroom. There are no singles. A community kitchen is on the ground floor. The 2026–27 double rate is $6,104 per semester.",
     freshmen: true,
     website: { url: "https://studentaffairs.temple.edu/housing", label: "Apply for housing" },
+    parking: campusParking,
     gradient: "from-red-900 to-stone-900",
   },
   {
@@ -168,6 +186,11 @@ export const housing: Housing[] = [
       url: "https://www.apartments.com/avery-philly-philadelphia-pa/1kd7cz7/",
       label: "See current rates",
     },
+    parking: {
+      summary: "Paid · ask the office",
+      detail:
+        "Avery Philly has offered on-site parking for a fee, and it is not included in rent. There is no current public price, so confirm a spot and the rate before you sign.",
+    },
     gradient: "from-slate-700 to-slate-900",
   },
   {
@@ -187,6 +210,11 @@ export const housing: Housing[] = [
       "A furnished high-rise at 1100 W Montgomery Ave, which the property describes as steps from campus. Floor plans are studios and 2-, 3-, and 4-bedroom apartments, leased by the bedroom. A shared room in a 3-bedroom is advertised at $849 for the 2026–27 year; current listings also run up to about $2,129 for private rooms and studios. Amenities include a 14th-floor sky lounge, a 24/7 fitness center, study rooms, and a 24-hour front desk. First-years can join the First Year Flock program.",
     freshmen: true,
     website: { url: "https://www.theviewatmontgomery.com/floor-plans", label: "Start a lease" },
+    parking: {
+      summary: "Paid · about $169/month",
+      detail:
+        "Gated parking is available and not included in rent. A surface-lot spot is listed around $169 a month.",
+    },
     gradient: "from-sky-800 to-indigo-950",
   },
   {
@@ -206,6 +234,11 @@ export const housing: Housing[] = [
       "Furnished studios and 1- to 4-bedroom apartments at 1717 N 12th St, about a 6-minute walk to Main Campus. Listed bedroom rents run about $929–$2,699. The property says rent includes gas, water, sewer, trash, and wireless internet, plus furniture. Laundry is on each floor, and there is a fitness center and a sky lounge on the 18th floor.",
     freshmen: true,
     website: { url: "https://www.pursuevantage.com/floor-plans", label: "Start a lease" },
+    parking: {
+      summary: "Paid · about $169/month",
+      detail:
+        "A surface-lot spot is listed around $169 a month, and other options run closer to $199. Parking is not included in rent.",
+    },
     gradient: "from-zinc-700 to-neutral-900",
   },
   {
@@ -229,6 +262,10 @@ export const housing: Housing[] = [
       url: "https://oxfordvillageapts.com/",
       label: "See current rates",
     },
+    parking: {
+      summary: "Paid · $100/month",
+      detail: "Gated parking is $100 a month per space. It is not included in rent.",
+    },
     gradient: "from-emerald-800 to-teal-950",
   },
   {
@@ -251,6 +288,11 @@ export const housing: Housing[] = [
       url: "https://portal.tkclients.com/application?lease_type=NEW_LEASE_APPLICATION&prop_code=380",
       label: "Start a lease",
     },
+    parking: {
+      summary: "Paid · limited spots",
+      detail:
+        "University Village has assigned parking and charges for it separately from rent. The current price is not listed publicly, so confirm it with the leasing office.",
+    },
     gradient: "from-indigo-800 to-slate-950",
   },
   {
@@ -270,6 +312,10 @@ export const housing: Housing[] = [
       "Furnished 2- and 4-bedroom apartments at 1000 Diamond St, an 8-minute walk to Main Campus. Current per-bedroom listings run about $675–$800, and the property site advertises 2026–27 rents starting at $760. The building has smart locks, a fitness center, study rooms, a movie theater, and laundry. Water, internet, and trash are typically included.",
     freshmen: true,
     website: { url: "https://www.templecrossing.com/", label: "Start a lease" },
+    parking: {
+      summary: "Not listed with rent",
+      detail: "Current listings do not say whether Temple Crossing includes a parking spot or what it costs. Ask the office before you count on a car.",
+    },
     gradient: "from-violet-800 to-purple-950",
   },
   {
@@ -289,6 +335,10 @@ export const housing: Housing[] = [
       "More than 240 apartments at 1801 N 10th St, about three blocks from campus and next to the Temple University train station. Floor plans run from 1 to 5 bedrooms. Currently advertised rents are $820–$860 for a 2-bedroom, $825–$850 for a 4-bedroom, and $800–$900 for a 5-bedroom; 1- and 3-bedrooms were sold out on the site. Furniture is optional and extra. Sewage and trash are included; water and electric are billed separately. There is a fitness center, laundry, and a 24/7 front desk.",
     freshmen: true,
     website: { url: "https://kardon-atlantic.com/apartments/", label: "Start a lease" },
+    parking: {
+      summary: "Not listed with rent",
+      detail: "Current listings do not include a parking spot with the apartment. Ask the office before you count on a car.",
+    },
     gradient: "from-cyan-800 to-slate-950",
   },
   {
@@ -311,6 +361,10 @@ export const housing: Housing[] = [
       url: "https://offcampus.temple.edu/housing/property/beech-international/ocp11z2vr4",
       label: "Start a lease",
     },
+    parking: {
+      summary: "Not listed with rent",
+      detail: "Current listings do not say whether Beech International Village includes a parking spot or what it costs. Ask the office before you count on a car.",
+    },
     gradient: "from-teal-800 to-emerald-950",
   },
   {
@@ -332,6 +386,10 @@ export const housing: Housing[] = [
     website: {
       url: "https://offcampus.temple.edu/housing/property/university-apartments/ocpmtblt9k",
       label: "Start a lease",
+    },
+    parking: {
+      summary: "Paid · $100/month",
+      detail: "Assigned parking is $100 a month and is not included in the rent.",
     },
     gradient: "from-orange-800 to-rose-950",
   },
