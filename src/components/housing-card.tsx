@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Building2, Car, Footprints, MessageSquare } from "lucide-react";
+import { Building2, Bus, Car, Footprints, MessageSquare } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { RatingBadge } from "@/components/rating-badge";
 import { formatPrice, type Housing } from "@/data/housing";
@@ -71,6 +71,12 @@ export function HousingCard({ housing, summary }: { housing: Housing; summary: R
           <Car className="size-3.5 shrink-0" />
           {housing.parking.summary}
         </p>
+        {housing.transit && (
+          <p className="flex items-center gap-1 text-xs text-muted-foreground">
+            <Bus className="size-3.5 shrink-0" />
+            {housing.transit.summary}
+          </p>
+        )}
         <div className="mt-auto flex items-center justify-between border-t pt-3 text-xs text-muted-foreground">
           <span className="font-semibold text-foreground">
             {formatPrice(housing)}

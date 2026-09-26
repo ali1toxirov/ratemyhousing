@@ -31,6 +31,7 @@ const checklist = [
   "Fan for early fall",
   "Laundry bag and detergent",
   "Command hooks (no nails allowed in dorms)",
+  "Painter's tape to put behind Command strips so they don't pull paint off the wall",
   "Small first-aid kit and basic meds",
   "A small trash can and trash bags. You take out your own trash, and the room does not come with a bin.",
   "Disinfecting wipes and a few hangers. The closet is empty.",
