@@ -5,6 +5,7 @@ export const navLinks = [
   { href: "/housing", label: "Browse Housing" },
   { href: "/reviews", label: "Reviews" },
   { href: "/pricing", label: "Pricing" },
+  { href: "/leasing", label: "How to Lease" },
   { href: "/guide", label: "Housing Guide" },
 ];
 

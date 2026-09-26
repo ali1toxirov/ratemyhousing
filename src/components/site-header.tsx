@@ -17,7 +17,7 @@ export function SiteHeader() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <Logo />
 
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden items-center gap-1 lg:flex">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -38,7 +38,7 @@ export function SiteHeader() {
           </Link>
           <Sheet>
             <SheetTrigger
-              className={cn(buttonVariants({ variant: "ghost", size: "icon-lg" }), "md:hidden")}
+              className={cn(buttonVariants({ variant: "ghost", size: "icon-lg" }), "lg:hidden")}
               aria-label="Open menu"
             >
               <Menu />

@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, BedDouble, Check, DollarSign, Footprints, GraduationCap, MapPin } from "lucide-react";
+import { ArrowLeft, BedDouble, Check, DollarSign, ExternalLink, Footprints, GraduationCap, MapPin } from "lucide-react";
 import { HousingCover } from "@/components/housing-card";
+import { buttonVariants } from "@/components/ui/button";
 import { formatPrice, getHousing, housing } from "@/data/housing";
+import { cn } from "@/lib/utils";
 import { HousingReviews } from "./housing-reviews";
 
 export function generateStaticParams() {
@@ -40,6 +42,18 @@ export default async function HousingDetailPage({ params }: PageProps<"/housing/
             <MapPin className="size-4" /> {place.address} · {place.style}
           </p>
           <p className="mt-4 max-w-3xl leading-relaxed">{place.description}</p>
+
+          {place.website && (
+            <a
+              href={place.website.url}
+              target="_blank"
+              rel="noreferrer"
+              className={cn(buttonVariants({ size: "lg" }), "mt-5")}
+            >
+              {place.website.label}
+              <ExternalLink />
+            </a>
+          )}
 
           <dl className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {facts.map((f) => (

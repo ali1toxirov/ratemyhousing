@@ -16,6 +16,8 @@ export type Housing = {
   description: string;
   freshmen: boolean;
   gradient: string;
+  /** Where to apply or start a lease. Omitted when there is no public site. */
+  website?: { url: string; label: string };
 };
 
 // Prices are rough estimates for demo purposes. Always confirm with
@@ -37,6 +39,7 @@ export const housing: Housing[] = [
     description:
       "Temple's tallest residence hall, split into North and South towers. Suites come with a shared bathroom and some have full kitchens. The dining hall and retail on the ground floor mean you rarely have to go far.",
     freshmen: true,
+    website: { url: "https://studentaffairs.temple.edu/housing", label: "Apply for housing" },
     gradient: "from-rose-700 to-red-900",
   },
   {
@@ -55,6 +58,7 @@ export const housing: Housing[] = [
     description:
       "A popular first-year building in the heart of campus. Suites share a bathroom between two rooms, and the floor lounges make it easy to meet people during the first weeks of school.",
     freshmen: true,
+    website: { url: "https://studentaffairs.temple.edu/housing", label: "Apply for housing" },
     gradient: "from-red-800 to-rose-950",
   },
   {
@@ -73,6 +77,7 @@ export const housing: Housing[] = [
     description:
       "Twin traditional-style halls with communal bathrooms and the well-known J&H dining hall downstairs. Rooms are smaller and older, but it's one of the cheapest on-campus options and a great place to make friends.",
     freshmen: true,
+    website: { url: "https://studentaffairs.temple.edu/housing", label: "Apply for housing" },
     gradient: "from-stone-600 to-stone-900",
   },
   {
@@ -91,6 +96,7 @@ export const housing: Housing[] = [
     description:
       "A mid-sized, low-key residence hall close to the Liacouras Center. Rooms are simple but air-conditioned and it's known as a calmer option compared to the bigger towers.",
     freshmen: true,
+    website: { url: "https://studentaffairs.temple.edu/housing", label: "Apply for housing" },
     gradient: "from-red-700 to-orange-900",
   },
   {
@@ -109,6 +115,7 @@ export const housing: Housing[] = [
     description:
       "Apartment-style housing on the south end of campus for sophomores and above. Each unit has a full kitchen and living room, so it's a good step between dorm life and renting off campus.",
     freshmen: false,
+    website: { url: "https://studentaffairs.temple.edu/housing", label: "Apply for housing" },
     gradient: "from-rose-800 to-pink-950",
   },
   {
@@ -127,6 +134,7 @@ export const housing: Housing[] = [
     description:
       "A traditional hall on 13th Street, a short walk from the Bell Tower and main classroom buildings. Expect standard doubles, shared floor bathrooms and a friendly floor community.",
     freshmen: true,
+    website: { url: "https://studentaffairs.temple.edu/housing", label: "Apply for housing" },
     gradient: "from-red-900 to-stone-900",
   },
   {
@@ -148,6 +156,25 @@ export const housing: Housing[] = [
     gradient: "from-slate-700 to-slate-900",
   },
   {
+    slug: "the-view-at-montgomery",
+    name: "The View at Montgomery",
+    type: "off-campus",
+    style: "Apartment",
+    address: "1100 W Montgomery Ave",
+    walkMinutes: 4,
+    priceMin: 850,
+    priceMax: 1550,
+    pricePeriod: "month",
+    roomTypes: ["Studio", "2-bed", "3-bed", "4-bed"],
+    amenities: ["Furnished", "Gym", "Sky lounge", "Utilities included", "24/7 front desk"],
+    bestFor: "Students who want a high-rise with skyline views steps from campus",
+    description:
+      "A furnished high-rise just across Montgomery Avenue from campus. You sign an individual lease by the bedroom, with utilities and Wi-Fi included, a 24-hour fitness center, and a sky lounge on the top floor. Freshmen can join the First Year Flock program.",
+    freshmen: true,
+    website: { url: "https://www.theviewatmontgomery.com/floor-plans", label: "Start a lease" },
+    gradient: "from-sky-800 to-indigo-950",
+  },
+  {
     slug: "vantage",
     name: "Vantage Philadelphia",
     type: "off-campus",
@@ -163,6 +190,7 @@ export const housing: Housing[] = [
     description:
       "A newer mid-rise with modern apartments, a rooftop deck and plenty of study space. Popular with sophomores and juniors moving off campus for the first time.",
     freshmen: false,
+    website: { url: "https://www.pursuevantage.com/floor-plans", label: "Start a lease" },
     gradient: "from-zinc-700 to-neutral-900",
   },
   {
@@ -181,6 +209,10 @@ export const housing: Housing[] = [
     description:
       "Townhouse-style apartments a little farther west of campus. Units tend to be bigger and cheaper than the high-rises, and it's one of the few places with free parking.",
     freshmen: false,
+    website: {
+      url: "https://oxford-village0-rentcafewebsite.securecafe.com/onlineleasing/oxford-village0/floorplans",
+      label: "Start a lease",
+    },
     gradient: "from-emerald-800 to-teal-950",
   },
   {
@@ -199,6 +231,10 @@ export const housing: Housing[] = [
     description:
       "An older but well-located complex with furnished units and individual leases. Management is responsive, and the price is a step below the newer towers.",
     freshmen: false,
+    website: {
+      url: "https://portal.tkclients.com/application?lease_type=NEW_LEASE_APPLICATION&prop_code=380",
+      label: "Start a lease",
+    },
     gradient: "from-indigo-800 to-slate-950",
   },
   {
@@ -217,6 +253,7 @@ export const housing: Housing[] = [
     description:
       "Renting a room in a shared rowhouse is the most affordable way to live near Temple. Quality varies a lot by landlord, so reading reviews and touring in person really matters here.",
     freshmen: false,
+    website: { url: "https://offcampus.temple.edu", label: "Search listings" },
     gradient: "from-amber-700 to-orange-950",
   },
 ];
