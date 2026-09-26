@@ -15,7 +15,7 @@ const timeline = [
 
 const compare = {
   on: {
-    pros: ["Walk to class in minutes", "Utilities, Wi-Fi, and furniture included", "RAs and 24/7 security", "Easiest way to make friends"],
+    pros: ["Walk to class in minutes", "Utilities, Wi-Fi, and furniture included", "RAs and a staffed front desk", "Easiest way to make friends"],
     cons: ["Higher cost per month", "Meal plan often required", "Less privacy and space", "Move out over winter break (some halls)"],
   },
   off: {

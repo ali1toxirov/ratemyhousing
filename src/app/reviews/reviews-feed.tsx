@@ -9,14 +9,17 @@ import { housing } from "@/data/housing";
 import { useReviews } from "@/lib/reviews-store";
 import { cn } from "@/lib/utils";
 
-type Filter = "all" | "on-campus" | "off-campus" | "positive" | "critical";
+type Filter = "all" | "on-campus" | "off-campus" | 1 | 2 | 3 | 4 | 5;
 
 const filters: { value: Filter; label: string }[] = [
   { value: "all", label: "All reviews" },
   { value: "on-campus", label: "On campus" },
   { value: "off-campus", label: "Off campus" },
-  { value: "positive", label: "4–5 stars" },
-  { value: "critical", label: "1–2 stars" },
+  { value: 5, label: "5 stars" },
+  { value: 4, label: "4 stars" },
+  { value: 3, label: "3 stars" },
+  { value: 2, label: "2 stars" },
+  { value: 1, label: "1 star" },
 ];
 
 const typeOf = Object.fromEntries(housing.map((h) => [h.slug, h.type]));
@@ -27,8 +30,7 @@ export function ReviewsFeed() {
 
   const shown = reviews.filter((r) => {
     if (filter === "on-campus" || filter === "off-campus") return typeOf[r.housingSlug] === filter;
-    if (filter === "positive") return r.overall >= 4;
-    if (filter === "critical") return r.overall <= 2;
+    if (typeof filter === "number") return r.overall === filter;
     return true;
   });
 

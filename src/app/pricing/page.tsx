@@ -65,6 +65,7 @@ export default function PricingPage() {
                     </TableCell>
                     <TableCell className="hidden text-muted-foreground sm:table-cell">
                       {formatPrice(h)} / {h.pricePeriod}
+                      {h.priceBasis ? ` (${h.priceBasis})` : ""}
                     </TableCell>
                     <TableCell className="pr-4 text-right font-semibold tabular-nums">
                       ${monthlyEstimate(h).toLocaleString()}
@@ -75,8 +76,8 @@ export default function PricingPage() {
             </Table>
           </div>
           <p className="text-xs text-muted-foreground">
-            Estimates only. Semester prices are divided by 4.5 months. Confirm current rates with Temple Housing or the
-            property.
+            On-campus figures are Temple's 2026–27 semester rates, divided by 4.5 months for the monthly column. Apartment
+            rents are current advertised prices. Confirm before you sign.
           </p>
         </section>
 

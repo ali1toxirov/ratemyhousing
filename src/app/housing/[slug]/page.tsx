@@ -23,7 +23,11 @@ export default async function HousingDetailPage({ params }: PageProps<"/housing/
   if (!place) notFound();
 
   const facts = [
-    { icon: DollarSign, label: "Price", value: `${formatPrice(place)} / ${place.pricePeriod}` },
+    {
+      icon: DollarSign,
+      label: "Price",
+      value: `${formatPrice(place)} / ${place.pricePeriod}${place.priceBasis ? ` (${place.priceBasis})` : ""}`,
+    },
     { icon: Footprints, label: "Walk to Bell Tower", value: `~${place.walkMinutes} minutes` },
     { icon: BedDouble, label: "Room types", value: place.roomTypes.join(", ") },
     { icon: GraduationCap, label: "Freshmen", value: place.freshmen ? "Open to first-years" : "Sophomores and up" },
@@ -31,7 +35,12 @@ export default async function HousingDetailPage({ params }: PageProps<"/housing/
 
   return (
     <>
-      <HousingCover housing={place} className="h-48 sm:h-64" />
+      <HousingCover
+        housing={place}
+        priority={Boolean(place.image)}
+        sizes="100vw"
+        className={place.image ? "h-72 sm:h-96" : "h-48 sm:h-64"}
+      />
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="relative -mt-16 rounded-2xl border bg-card p-6 shadow-sm sm:p-8">
           <Link href="/housing" className="mb-4 inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
@@ -41,6 +50,14 @@ export default async function HousingDetailPage({ params }: PageProps<"/housing/
           <p className="mt-1 flex items-center gap-1 text-muted-foreground">
             <MapPin className="size-4" /> {place.address} · {place.style}
           </p>
+          {place.image && (
+            <p className="mt-1 text-xs text-muted-foreground">
+              Photo:{" "}
+              <a href={place.image.creditHref} target="_blank" rel="noreferrer" className="underline-offset-2 hover:underline">
+                {place.image.credit}
+              </a>
+            </p>
+          )}
           <p className="mt-4 max-w-3xl leading-relaxed">{place.description}</p>
 
           {place.website && (
@@ -77,7 +94,7 @@ export default async function HousingDetailPage({ params }: PageProps<"/housing/
             </ul>
           </div>
           <p className="mt-6 text-xs text-muted-foreground">
-            Prices are estimates for comparison only. Confirm current rates with Temple Housing or the property.
+            On-campus rates are Temple's published 2026–27 semester prices. Apartment figures are current advertised rents and can change. Confirm before you sign.
           </p>
         </div>
 

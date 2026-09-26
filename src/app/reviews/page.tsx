@@ -10,7 +10,7 @@ export default function ReviewsPage() {
       <PageHeader
         eyebrow="Reviews & ratings"
         title="What students are saying"
-        description="Real experiences from Owls who lived there. Filter by on or off campus, or look for the highest and lowest rated stays."
+        description="Real experiences from Owls who lived there. Filter by on or off campus, or by an exact star rating from 1 to 5."
       />
       <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
         <ReviewsFeed />
