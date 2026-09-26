@@ -1,12 +1,27 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, BedDouble, Car, Check, DollarSign, ExternalLink, Footprints, GraduationCap, MapPin, Users } from "lucide-react";
+import { ArrowLeft, BedDouble, Car, Check, DollarSign, ExternalLink, Footprints, GraduationCap, MapPin, UserPlus, Users } from "lucide-react";
 import { HousingCover } from "@/components/housing-card";
 import { buttonVariants } from "@/components/ui/button";
-import { formatPrice, getHousing, housing } from "@/data/housing";
+import { formatPrice, getHousing, guestPolicy, housing } from "@/data/housing";
 import { cn } from "@/lib/utils";
 import { HousingReviews } from "./housing-reviews";
+
+function ListingTip({ tip, website }: { tip: string; website?: string }) {
+  const marker = "their website";
+  const index = tip.indexOf(marker);
+  if (!website || index === -1) return tip;
+  return (
+    <>
+      {tip.slice(0, index)}
+      <a href={website} target="_blank" rel="noreferrer" className="font-medium text-primary hover:underline">
+        {marker}
+      </a>
+      {tip.slice(index + marker.length)}
+    </>
+  );
+}
 
 export function generateStaticParams() {
   return housing.map((h) => ({ slug: h.slug }));
@@ -21,6 +36,7 @@ export default async function HousingDetailPage({ params }: PageProps<"/housing/
   const { slug } = await params;
   const place = getHousing(slug);
   if (!place) notFound();
+  const guests = guestPolicy(place);
 
   const facts = [
     {
@@ -37,6 +53,7 @@ export default async function HousingDetailPage({ params }: PageProps<"/housing/
       value: place.type === "on-campus" ? "RAs live in the hall" : "No RAs · property staff",
     },
     { icon: Car, label: "Parking", value: place.parking.summary },
+    { icon: UserPlus, label: "Guests", value: guests.summary },
   ];
 
   return (
@@ -78,6 +95,13 @@ export default async function HousingDetailPage({ params }: PageProps<"/housing/
             </a>
           )}
 
+          {place.tip && (
+            <p className="mt-5 max-w-3xl rounded-xl bg-accent p-4 text-sm leading-relaxed">
+              <span className="font-semibold">Tip. </span>
+              <ListingTip tip={place.tip} website={place.website?.url} />
+            </p>
+          )}
+
           <dl className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {facts.map((f) => (
               <div key={f.label} className="rounded-xl bg-muted/60 p-4">
@@ -114,8 +138,9 @@ export default async function HousingDetailPage({ params }: PageProps<"/housing/
             </p>
           )}
           <p className="mt-6 text-sm text-muted-foreground">{place.parking.detail}</p>
+          <p className="mt-3 text-sm text-muted-foreground">{guests.detail}</p>
           <p className="mt-3 text-xs text-muted-foreground">
-            On-campus rates are Temple&apos;s published 2026–27 semester prices. Apartment figures are current advertised rents and can change. Confirm rent and parking before you rely on them.
+            On-campus rates are Temple&apos;s published 2026–27 semester prices. Apartment figures are current advertised rents and can change. Confirm rent, parking, and guest rules before you rely on them.
           </p>
         </div>
 

@@ -16,6 +16,8 @@ export type Housing = {
   amenities: string[];
   bestFor: string;
   description: string;
+  /** A short leasing tip shown on the listing. */
+  tip?: string;
   freshmen: boolean;
   gradient: string;
   /** Where to apply or start a lease. Omitted when there is no public site. */
@@ -23,6 +25,22 @@ export type Housing = {
   /** Freely licensed photo. Omitted when none is available. */
   image?: { src: string; alt: string; credit: string; creditHref: string };
   parking: { summary: string; detail: string };
+  /** Overrides the shared on-campus or off-campus guest policy. */
+  guests?: { summary: string; detail: string };
+};
+
+// University Housing applies the same guest rules in every residence hall.
+// Hours and overnight limits are from UHRL's guest policy and the 2026–27 housing license.
+const campusGuests = {
+  summary: "1 overnight guest",
+  detail:
+    "You can host up to 3 guests at a time from 7 a.m. to 3 a.m., and only 1 of them can stay overnight. A guest can stay 2 nights in a row, and no more than 3 nights in 7 days. You need your roommate's permission, you register the guest in MyHousing, and you escort them. Guests under 18 can visit from 8 a.m. to 10 p.m. and cannot stay overnight. Temple can take guest privileges away.",
+};
+
+const apartmentGuests = {
+  summary: "Set by the lease",
+  detail:
+    "This is a private apartment, so Temple's residence-hall guest desk rules do not apply. How many guests you can have, and whether they can stay overnight, is in your lease and up to your roommates. Ask the leasing office before you count on overnight guests.",
 };
 
 // On-campus rooms do not include a spot. Overnight permits are sold by Temple Parking Services.
@@ -206,6 +224,7 @@ export const housing: Housing[] = [
     roomTypes: ["Studio", "2-bed / 1-bath, private", "2-bed / 2-bath, shared or private", "3-bed / 2-bath, shared or private", "4-bed / 2-bath"],
     amenities: ["Furnished", "Sky lounge", "24/7 fitness center", "Study rooms", "24-hour front desk"],
     bestFor: "Students who want a furnished high-rise steps from campus",
+    tip: "Before you sign, check their website and call or text them. They sometimes have special offers, like a 10-month lease, that are not listed with the regular rent.",
     description:
       "A furnished high-rise at 1100 W Montgomery Ave, which the property describes as steps from campus. Floor plans are a studio, a 2-bed/1-bath, a 2-bed/2-bath, a 3-bed/2-bath, and a 4-bed/2-bath, leased by the bedroom. In the 2-bed/2-bath and the 3-bed/2-bath, a bedroom can be private or shared with one other person. A shared room in a 3-bedroom is advertised at $849; private rooms and studios run higher, up to about $2,129. The 2-bed/1-bath and the current 4-bed/2-bath listings are private bedrooms. Amenities include a 14th-floor sky lounge, a 24/7 fitness center, study rooms, and a 24-hour front desk. There are no Temple RAs. That front desk works for the apartment company. First Year Flock is the building's own program for freshmen, not a residence-hall floor. You cook in the apartment, and a meal plan is optional.",
     freshmen: true,
@@ -397,6 +416,10 @@ export const housing: Housing[] = [
 
 export function getHousing(slug: string) {
   return housing.find((h) => h.slug === slug);
+}
+
+export function guestPolicy(h: Housing) {
+  return h.guests ?? (h.type === "on-campus" ? campusGuests : apartmentGuests);
 }
 
 export function formatPrice(h: Housing) {
