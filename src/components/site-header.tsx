@@ -2,11 +2,34 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu } from "lucide-react";
+import { Menu, Moon, Sun } from "lucide-react";
 import { Logo, navLinks } from "@/components/logo";
 import { buttonVariants } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
+
+function toggleTheme() {
+  const next = !document.documentElement.classList.contains("dark");
+  document.documentElement.classList.toggle("dark", next);
+  localStorage.setItem("ratemyhousing-theme", next ? "dark" : "light");
+}
+
+function ThemeToggle() {
+  return (
+    <button
+      type="button"
+      onClick={toggleTheme}
+      className={cn(buttonVariants({ variant: "outline", size: "icon-lg" }))}
+    >
+      <Sun className="hidden dark:inline" />
+      <Moon className="dark:hidden" />
+      <span className="sr-only">
+        <span className="dark:hidden">Switch to dark mode</span>
+        <span className="hidden dark:inline">Switch to light mode</span>
+      </span>
+    </button>
+  );
+}
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -36,6 +59,7 @@ export function SiteHeader() {
           <Link href="/reviews#write" className={cn(buttonVariants({ size: "lg" }), "hidden px-4 sm:inline-flex")}>
             Write a review
           </Link>
+          <ThemeToggle />
           <Sheet>
             <SheetTrigger
               className={cn(buttonVariants({ variant: "ghost", size: "icon-lg" }), "lg:hidden")}

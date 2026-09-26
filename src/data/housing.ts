@@ -46,11 +46,11 @@ export const housing: Housing[] = [
     priceMin: 7270,
     priceMax: 8715,
     pricePeriod: "semester",
-    roomTypes: ["1-bedroom apartment", "2-bedroom apartment", "3-bedroom apartment"],
+    roomTypes: ["1-bedroom, single or double", "2-bedroom double", "3-bedroom, single or double"],
     amenities: ["A/C", "Full kitchen", "Private bathroom", "Dining hall on site", "Laundry in building", "Skyline views"],
     bestFor: "Students who want an on-campus apartment on Broad Street",
     description:
-      "A three-building complex for first-years through seniors. Morgan North (1601 N Broad) is 27 stories and Morgan South (1603 N Broad) is 10. Every unit is a 1-, 2-, or 3-bedroom apartment with its own bathroom and a full kitchen. Temple describes the towers as having skyline views, and the dining hall is in the complex. Resident Assistants still live here, and a Resident Director runs each tower. A kitchen does not make this a private apartment. First-years and transfers must buy at least 12 meals a week. Returning students can skip the meal plan and cook. 2026–27 semester rates run from $7,270 to $8,715.",
+      "A three-building complex for first-years through seniors. Morgan North (1601 N Broad) is 27 stories and Morgan South (1603 N Broad) is 10. Every unit is a 1-, 2-, or 3-bedroom apartment with its own bathroom and a full kitchen. A bedroom is not always one person. Temple prices a 2-bedroom as a double, and a 3-bedroom in three layouts: a Single A, a Double B, and a Double C, so one apartment can mix a private bedroom with a shared one. A 1-bedroom can be a single or a double. Temple describes the towers as having skyline views, and the dining hall is in the complex. Resident Assistants still live here, and a Resident Director runs each tower. A kitchen does not make this a private apartment. First-years and transfers must buy at least 12 meals a week. Returning students can skip the meal plan and cook. 2026–27 semester rates run from $7,270 to $8,715.",
     freshmen: true,
     website: { url: "https://studentaffairs.temple.edu/housing", label: "Apply for housing" },
     image: {
@@ -132,11 +132,11 @@ export const housing: Housing[] = [
     priceMin: 6556,
     priceMax: 8475,
     pricePeriod: "semester",
-    roomTypes: ["1-bedroom apartment", "2-bedroom apartment", "3-bedroom apartment", "4-bedroom apartment"],
-    amenities: ["Full kitchen", "Private bathroom", "A/C", "Laundry in building", "Study lounges"],
+    roomTypes: ["Double", "Large double", "Double with its own bath", "Single", "Single in a 2-bedroom", "3- and 4-bedroom apartments"],
+    amenities: ["Full kitchen", "Bathroom in the apartment", "A/C", "Laundry in building", "Study lounges"],
     bestFor: "Students who want an on-campus apartment with a kitchen",
     description:
-      "A 6-story apartment hall for about 658 students, from first-year through senior. Units are 1- to 4-bedroom apartments with a full kitchen and at least one bathroom. Temple Towers East is 1200 Cecil B. Moore Ave and West is 1250. It feels like an apartment, but it is still University Housing: Resident Assistants live in the building and a Resident Director runs it. New students must buy at least 12 meals a week. Returning students can opt out and cook. 2026–27 semester rates run from $6,556 to $8,475.",
+      "A 6-story apartment hall for about 658 students, from first-year through senior. Units are 1- to 4-bedroom apartments with a full kitchen and at least one bathroom. The bedroom itself comes in different layouts: a double, a large double, a double with its own bathroom, a single, or a single in a 2-bedroom apartment. A group of 6 or 7 can fill one apartment, because some bedrooms are shared. Temple Towers East is 1200 Cecil B. Moore Ave and West is 1250. It feels like an apartment, but it is still University Housing: Resident Assistants live in the building and a Resident Director runs it. New students must buy at least 12 meals a week. Returning students can opt out and cook. 2026–27 semester rates run from $6,556 to $8,475.",
     freshmen: true,
     website: { url: "https://studentaffairs.temple.edu/housing", label: "Apply for housing" },
     parking: {
@@ -176,11 +176,11 @@ export const housing: Housing[] = [
     priceMin: 949,
     priceMax: 1800,
     pricePeriod: "month",
-    roomTypes: ["Studio", "2-bed suite"],
+    roomTypes: ["Studio", "2-bed / 2-bath, private rooms", "2-bed with a den or office"],
     amenities: ["Furnished", "Fitness center", "Laundry in building", "Community Wi-Fi"],
     bestFor: "Students who want a furnished apartment at Avenue North",
     description:
-      "Formerly The Edge at Avenue North. Furnished studios and two-bedroom suites next to campus, leased by the person. Listed rents are about $949–$1,800. The building has a fitness center, laundry, and community Wi-Fi. There are no Resident Assistants. Maintenance and roommate issues go to the leasing office, not a Temple staff member on your floor. Each unit has a place to cook, and a meal plan is optional.",
+      "Formerly The Edge at Avenue North. Furnished studios and two-bedroom suites next to campus, leased by the person. Studios come in more than one size. The two-bedroom suites are 2-bed/2-bath, and some layouts add a den or an office. Every bedroom and bathroom is private, so you do not share a room. Listed rents are about $949–$1,800. The building has a fitness center, laundry, and community Wi-Fi. There are no Resident Assistants. Maintenance and roommate issues go to the leasing office, not a Temple staff member on your floor. Each unit has a place to cook, and a meal plan is optional.",
     freshmen: true,
     website: {
       url: "https://www.apartments.com/avery-philly-philadelphia-pa/1kd7cz7/",
@@ -203,11 +203,11 @@ export const housing: Housing[] = [
     priceMin: 849,
     priceMax: 2129,
     pricePeriod: "month",
-    roomTypes: ["Studio", "2-bed", "3-bed", "4-bed"],
+    roomTypes: ["Studio", "2-bed / 1-bath, private", "2-bed / 2-bath, shared or private", "3-bed / 2-bath, shared or private", "4-bed / 2-bath"],
     amenities: ["Furnished", "Sky lounge", "24/7 fitness center", "Study rooms", "24-hour front desk"],
     bestFor: "Students who want a furnished high-rise steps from campus",
     description:
-      "A furnished high-rise at 1100 W Montgomery Ave, which the property describes as steps from campus. Floor plans are studios and 2-, 3-, and 4-bedroom apartments, leased by the bedroom. A shared room in a 3-bedroom is advertised at $849 for the 2026–27 year; current listings also run up to about $2,129 for private rooms and studios. Amenities include a 14th-floor sky lounge, a 24/7 fitness center, study rooms, and a 24-hour front desk. There are no Temple RAs. That front desk works for the apartment company. First Year Flock is the building's own program for freshmen, not a residence-hall floor. You cook in the apartment, and a meal plan is optional.",
+      "A furnished high-rise at 1100 W Montgomery Ave, which the property describes as steps from campus. Floor plans are a studio, a 2-bed/1-bath, a 2-bed/2-bath, a 3-bed/2-bath, and a 4-bed/2-bath, leased by the bedroom. In the 2-bed/2-bath and the 3-bed/2-bath, a bedroom can be private or shared with one other person. A shared room in a 3-bedroom is advertised at $849; private rooms and studios run higher, up to about $2,129. The 2-bed/1-bath and the current 4-bed/2-bath listings are private bedrooms. Amenities include a 14th-floor sky lounge, a 24/7 fitness center, study rooms, and a 24-hour front desk. There are no Temple RAs. That front desk works for the apartment company. First Year Flock is the building's own program for freshmen, not a residence-hall floor. You cook in the apartment, and a meal plan is optional.",
     freshmen: true,
     website: { url: "https://www.theviewatmontgomery.com/floor-plans", label: "Start a lease" },
     parking: {
@@ -227,11 +227,11 @@ export const housing: Housing[] = [
     priceMin: 929,
     priceMax: 2699,
     pricePeriod: "month",
-    roomTypes: ["Studio", "1-bed", "2-bed", "3-bed", "4-bed"],
+    roomTypes: ["Studio", "1-bed / 1-bath", "2-bed / 1-bath", "2-bed / 2-bath, shared or private", "3-bed / 2-bath", "4-bed / 2-bath"],
     amenities: ["Furnished", "18th-floor sky lounge", "Fitness center", "Laundry on each floor", "Wi-Fi"],
     bestFor: "Students who want a furnished high-rise with utilities in the rent",
     description:
-      "Furnished studios and 1- to 4-bedroom apartments at 1717 N 12th St, about a 6-minute walk to Main Campus. Listed bedroom rents run about $929–$2,699. The property says rent includes gas, water, sewer, trash, and wireless internet, plus furniture. Laundry is on each floor, and there is a fitness center and a sky lounge on the 18th floor. There are no RAs. You sign with the property and send maintenance requests to them. A Temple meal plan is optional.",
+      "Furnished studios and 1- to 4-bedroom apartments at 1717 N 12th St, about a 6-minute walk to Main Campus. A 2-bedroom is either 1 bath or 2 baths, and the 2-bath plan has several layouts. Some of those 2-bed/2-bath units put two people in a bedroom, which is why rents start near $929. A private bedroom costs more. The 3-bedroom and 4-bedroom are both 2-bath apartments, and the rooms listed for them are private. Listed bedroom rents run about $929–$2,699. The property says rent includes gas, water, sewer, trash, and wireless internet, plus furniture. Laundry is on each floor, and there is a fitness center and a sky lounge on the 18th floor. There are no RAs. You sign with the property and send maintenance requests to them. A Temple meal plan is optional.",
     freshmen: true,
     website: { url: "https://www.pursuevantage.com/floor-plans", label: "Start a lease" },
     parking: {
@@ -278,11 +278,11 @@ export const housing: Housing[] = [
     priceMin: 479,
     priceMax: 1494,
     pricePeriod: "month",
-    roomTypes: ["1-bed", "2-bed", "3-bed", "4-bed"],
+    roomTypes: ["1-bed / 1-bath", "2-bed / 1-bath, private rooms", "2-bed / 2-bath, four people", "2-bed / 2-bath, private rooms", "3-bed / 3-bath", "4-bed / 4-bath"],
     amenities: ["Furnished", "24-hour fitness center", "Academic Success Center", "Internet included", "Individual leases"],
     bestFor: "Students who want a furnished apartment with a lower per-bedroom rent",
     description:
-      "Furnished apartments at 1701 N 10th St, about an 8-minute walk to Main Campus. Listed rents run from $479 a bedroom in a shared 2-bedroom up to $1,494 for a 1-bedroom. Leases are individual. The building has a 24-hour fitness center and an Academic Success Center. Internet, recycling, and trash are included; other utilities are not listed as included. There are no RAs. Each person signs with the property, and a meal plan is optional.",
+      "Furnished apartments at 1701 N 10th St, about an 8-minute walk to Main Campus. The 2-bedroom is three layouts. A 2-bed/1-bath is two private bedrooms. A 2-bed/2-bath can hold four people, two per bedroom, at $479 each, or two people with a private bedroom at about $979. The 3-bedroom is a 3-bed/3-bath with one person per room. The 4-bedroom is a 4-bed/4-bath, so each person has a bedroom and a bathroom. Listed rents run from $479 a bedroom up to $1,494 for a 1-bedroom. Leases are individual. The building has a 24-hour fitness center and an Academic Success Center. Internet, recycling, and trash are included; other utilities are not listed as included. There are no RAs. Each person signs with the property, and a meal plan is optional.",
     freshmen: true,
     website: {
       url: "https://portal.tkclients.com/application?lease_type=NEW_LEASE_APPLICATION&prop_code=380",
@@ -305,11 +305,11 @@ export const housing: Housing[] = [
     priceMin: 675,
     priceMax: 800,
     pricePeriod: "month",
-    roomTypes: ["2-bed", "4-bed"],
+    roomTypes: ["2-bed, private or shared", "4-bed, private or shared"],
     amenities: ["Furnished", "Smart locks", "Fitness center", "Study rooms", "Movie theater", "Laundry on site"],
     bestFor: "Students who want a furnished apartment about 8 minutes from campus",
     description:
-      "Furnished 2- and 4-bedroom apartments at 1000 Diamond St, an 8-minute walk to Main Campus. Current per-bedroom listings run about $675–$800, and the property site advertises 2026–27 rents starting at $760. The building has smart locks, a fitness center, study rooms, a movie theater, and laundry. Water, internet, and trash are typically included. There are no RAs. You lease a bedroom from the property and cook in the apartment. The building does not sell a meal plan.",
+      "Furnished 2- and 4-bedroom apartments at 1000 Diamond St, an 8-minute walk to Main Campus. In both sizes, the bedroom you lease can be private or shared with another student. You can bring your own roommates or use the building's matching. Current per-bedroom listings run about $675–$800, and the property site advertises 2026–27 rents starting at $760. The building has smart locks, a fitness center, study rooms, a movie theater, and laundry. Water, internet, and trash are typically included. There are no RAs. You lease a bedroom from the property and cook in the apartment. The building does not sell a meal plan.",
     freshmen: true,
     website: { url: "https://www.templecrossing.com/", label: "Start a lease" },
     parking: {

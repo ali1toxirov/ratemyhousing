@@ -38,17 +38,17 @@ export default function HomePage() {
             <p className="max-w-xl text-lg text-white/80">
               Honest reviews, real prices, and practical tips for dorms and apartments on and around Main Campus.
             </p>
-            <form action="/housing" className="flex max-w-xl flex-col gap-2 rounded-2xl bg-white p-2 shadow-xl sm:flex-row">
+            <form action="/housing" className="flex max-w-xl flex-col gap-2 rounded-2xl bg-white p-2 text-neutral-950 shadow-xl sm:flex-row">
               <label htmlFor="hero-search" className="sr-only">
                 Search housing
               </label>
               <div className="flex flex-1 items-center gap-2 px-3">
-                <Search className="size-5 text-muted-foreground" />
+                <Search className="size-5 text-neutral-500" />
                 <input
                   id="hero-search"
                   name="q"
                   placeholder="Search a dorm or apartment, e.g. Morgan Hall"
-                  className="h-11 w-full bg-transparent text-foreground outline-none placeholder:text-muted-foreground"
+                  className="h-11 w-full bg-transparent text-neutral-950 outline-none placeholder:text-neutral-500"
                 />
               </div>
               <button type="submit" className={cn(buttonVariants({ size: "lg" }), "h-11 px-6 text-base")}>

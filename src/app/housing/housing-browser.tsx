@@ -17,8 +17,8 @@ type Sort = "rating" | "reviews" | "price" | "distance";
 const sortItems: { value: Sort; label: string }[] = [
   { value: "rating", label: "Top rated" },
   { value: "reviews", label: "Most reviewed" },
-  { value: "price", label: "Lowest price" },
-  { value: "distance", label: "Closest to campus" },
+  { value: "price", label: "Lowest to highest" },
+  { value: "distance", label: "Distance descending" },
 ];
 
 const typeTabs: { value: TypeFilter; label: string }[] = [
@@ -45,7 +45,7 @@ export function HousingBrowser({ initialQuery, initialType }: { initialQuery: st
         if (sort === "rating") return b.summary.average - a.summary.average;
         if (sort === "reviews") return b.summary.count - a.summary.count;
         if (sort === "price") return monthlyEstimate(a.h) - monthlyEstimate(b.h);
-        return a.h.walkMinutes - b.h.walkMinutes;
+        return b.h.walkMinutes - a.h.walkMinutes;
       });
   }, [reviews, query, type, sort, freshmenOnly]);
 
