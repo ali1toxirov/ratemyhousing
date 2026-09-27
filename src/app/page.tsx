@@ -35,9 +35,6 @@ export default function HomePage() {
             <h1 className="font-heading text-4xl font-bold leading-[1.05] tracking-tight sm:text-6xl">
               Find your place at Temple, rated by the students who live there.
             </h1>
-            <p className="max-w-xl text-lg text-white/80">
-              Honest reviews, real prices, and practical tips for dorms and apartments on and around Main Campus.
-            </p>
             <form action="/housing" className="flex max-w-xl flex-col gap-2 rounded-2xl bg-white p-2 text-neutral-950 shadow-xl sm:flex-row">
               <label htmlFor="hero-search" className="sr-only">
                 Search housing
@@ -126,7 +123,6 @@ export default function HomePage() {
         <div className="mb-6 flex items-end justify-between gap-4">
           <div>
             <h2 className="font-heading text-2xl font-bold sm:text-3xl">Latest reviews</h2>
-            <p className="text-muted-foreground">Fresh from students on and around Main Campus.</p>
           </div>
           <Link href="/reviews" className="hidden items-center gap-1 text-sm font-medium text-primary hover:underline sm:flex">
             All reviews <ArrowRight className="size-4" />

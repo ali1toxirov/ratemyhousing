@@ -47,7 +47,15 @@ export function HousingCover({
   );
 }
 
-export function HousingCard({ housing, summary }: { housing: Housing; summary: RatingSummary }) {
+export function HousingCard({
+  housing,
+  summary,
+  compact = false,
+}: {
+  housing: Housing;
+  summary: RatingSummary;
+  compact?: boolean;
+}) {
   const withMealPlan = formatWithRequiredMealPlan(housing);
   return (
     <Link
@@ -67,15 +75,20 @@ export function HousingCard({ housing, summary }: { housing: Housing; summary: R
           </div>
           <RatingBadge value={summary.average} />
         </div>
-        <p className="line-clamp-2 text-sm text-muted-foreground">{housing.bestFor}</p>
-        <p className="flex items-center gap-1 text-xs text-muted-foreground">
-          <Car className="size-3.5 shrink-0" />
-          {housing.parking.summary}
-        </p>
-        <p className="flex items-center gap-1 text-xs text-muted-foreground">
-          <UserPlus className="size-3.5 shrink-0" />
-          Guests · {guestPolicy(housing).summary}
-        </p>
+        {!compact && (
+          <>
+            <p className="line-clamp-2 text-sm text-muted-foreground">{housing.bestFor}</p>
+            <p className="flex items-center gap-1 text-xs text-muted-foreground">
+              <Car className="size-3.5 shrink-0" />
+              {housing.parking.summary}
+            </p>
+            <p className="flex items-center gap-1 text-xs text-muted-foreground">
+              <UserPlus className="size-3.5 shrink-0" />
+              Guests · {guestPolicy(housing).summary}
+            </p>
+          </>
+        )}
+        {!compact && (
         <div className="mt-auto flex items-end justify-between gap-3 border-t pt-3 text-xs text-muted-foreground">
           <div>
             <p className="font-semibold text-foreground">
@@ -103,6 +116,7 @@ export function HousingCard({ housing, summary }: { housing: Housing; summary: R
             </span>
           </span>
         </div>
+        )}
       </div>
     </Link>
   );

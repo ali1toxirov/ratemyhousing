@@ -16,7 +16,7 @@ export function TopRated() {
   return (
     <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {ranked.map(({ h, summary }) => (
-        <HousingCard key={h.slug} housing={h} summary={summary} />
+        <HousingCard key={h.slug} housing={h} summary={summary} compact />
       ))}
     </div>
   );

@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { CheckCircle2, FileText, GraduationCap, Home } from "lucide-react";
+import { CheckCircle2, GraduationCap, Home } from "lucide-react";
 import { PageHeader } from "@/components/page-header";
-import { Badge } from "@/components/ui/badge";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = { title: "How to Lease" };
 
@@ -49,17 +45,6 @@ const steps = [
   { n: "2", title: "Apply", body: "On campus, that is MyHousing. Off campus, it is the property’s application, linked from the listing." },
   { n: "3", title: "Get approved", body: "Apartments usually check your guarantor. Dorms confirm your deposit and then open room selection." },
   { n: "4", title: "Sign and pay", body: "Read the full agreement before you sign. You are committed once you sign and pay the deposit." },
-];
-
-const previewFields = [
-  { label: "Full name", value: "Your name" },
-  { label: "Email", value: "you@temple.edu" },
-  { label: "School", value: "Temple University" },
-  { label: "Move-in", value: "August 2026" },
-  { label: "Floor plan", value: "4-bedroom, private room" },
-  { label: "Guarantor", value: "Parent or guardian" },
-  { label: "Photo ID", value: "Uploaded" },
-  { label: "Status", value: "Not submitted" },
 ];
 
 export default function LeasingPage() {
@@ -116,40 +101,6 @@ export default function LeasingPage() {
               </li>
             ))}
           </ol>
-        </section>
-
-        <section className="grid items-start gap-8 lg:grid-cols-[1fr_1.1fr]">
-          <div>
-            <h2 className="font-heading text-2xl font-bold">A preview of the application</h2>
-            <p className="mt-3 leading-relaxed text-muted-foreground">
-              Off-campus applications usually ask for the details below. Yours will look a little different depending
-              on the building. On-campus applications live inside MyHousing and ask for roommate preferences instead of
-              a guarantor.
-            </p>
-            <Link href="/housing" className={cn(buttonVariants({ size: "lg" }), "mt-6")}>
-              Browse housing
-            </Link>
-          </div>
-
-          <div className="overflow-hidden rounded-2xl border bg-card shadow-sm">
-            <div className="flex items-center justify-between gap-3 border-b bg-muted/50 px-5 py-3">
-              <p className="flex items-center gap-2 text-sm font-semibold">
-                <FileText className="size-4 text-primary" /> Lease application
-              </p>
-              <Badge variant="outline">Preview</Badge>
-            </div>
-            <div className="grid gap-4 p-5 sm:grid-cols-2">
-              {previewFields.map((field) => (
-                <div key={field.label}>
-                  <p className="text-xs font-medium text-muted-foreground">{field.label}</p>
-                  <p className="mt-1 rounded-lg border bg-muted/40 px-3 py-2 text-sm">{field.value}</p>
-                </div>
-              ))}
-            </div>
-            <p className="border-t px-5 py-4 text-sm text-muted-foreground">
-              Example only. Nothing on this page is submitted, and it is not a real lease.
-            </p>
-          </div>
         </section>
       </div>
     </>

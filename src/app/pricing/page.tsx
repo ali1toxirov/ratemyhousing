@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { AlertTriangle, PiggyBank } from "lucide-react";
 import { PageHeader } from "@/components/page-header";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { formatPrice, formatWithRequiredMealPlan, housing, monthlyEstimate, requiredMealPlan } from "@/data/housing";
 import { BudgetCalculator } from "./budget-calculator";
+import { PriceCompare } from "./price-compare";
 
 export const metadata: Metadata = { title: "Pricing" };
 
@@ -26,72 +24,17 @@ const tips = [
 ];
 
 export default function PricingPage() {
-  const rows = [...housing].sort((a, b) => monthlyEstimate(a) - monthlyEstimate(b));
-
   return (
     <>
       <PageHeader
         eyebrow="Pricing"
         title="What does living near Temple actually cost?"
-        description="On-campus rates are billed per semester while apartments charge monthly. We convert everything to a monthly estimate so you can compare fairly."
+        description="Choose one place on each side."
       />
       <div className="mx-auto max-w-6xl space-y-16 px-4 py-10 sm:px-6">
         <section className="space-y-4">
-          <h2 className="font-heading text-2xl font-bold">Price comparison</h2>
-          <div className="overflow-hidden rounded-2xl border bg-card">
-            <Table>
-              <TableHeader>
-                <TableRow className="bg-muted/50">
-                  <TableHead className="pl-4">Place</TableHead>
-                  <TableHead>Type</TableHead>
-                  <TableHead className="hidden sm:table-cell">Listed price</TableHead>
-                  <TableHead className="pr-4 text-right">≈ Per month</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {rows.map((h) => (
-                  <TableRow key={h.slug}>
-                    <TableCell className="pl-4 font-medium">
-                      <Link href={`/housing/${h.slug}`} className="hover:text-primary hover:underline">
-                        {h.name}
-                      </Link>
-                    </TableCell>
-                    <TableCell>
-                      <span
-                        className={`rounded-full px-2 py-0.5 text-xs font-medium ${h.type === "on-campus" ? "bg-accent text-accent-foreground" : "bg-slate-100 text-slate-700"}`}
-                      >
-                        {h.type === "on-campus" ? "On campus" : "Off campus"}
-                      </span>
-                    </TableCell>
-                    <TableCell className="hidden text-muted-foreground sm:table-cell">
-                      <div>
-                        {formatPrice(h)} / {h.pricePeriod}
-                        {h.priceBasis ? ` (${h.priceBasis})` : ""}
-                      </div>
-                      {formatWithRequiredMealPlan(h) && (
-                        <p className="mt-1 text-xs text-foreground">
-                          New students {formatWithRequiredMealPlan(h)} / semester
-                        </p>
-                      )}
-                    </TableCell>
-                    <TableCell className="pr-4 text-right font-semibold tabular-nums">
-                      <div>${monthlyEstimate(h).toLocaleString()}</div>
-                      {formatWithRequiredMealPlan(h) && (
-                        <p className="mt-1 text-xs font-medium text-muted-foreground">
-                          {`New students $${(monthlyEstimate(h) + Math.round(requiredMealPlan.semester / 4.5)).toLocaleString()}`}
-                        </p>
-                      )}
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </div>
-          <p className="text-xs text-muted-foreground">
-            On-campus figures are Temple&apos;s 2026–27 semester rates, divided by 4.5 months for the monthly column. The
-            new-student total adds the required 12-meal plan, $2,389 per semester. Apartment rents are current advertised
-            prices, and a meal plan is optional there. Confirm before you sign.
-          </p>
+          <h2 className="font-heading text-2xl font-bold">Compare</h2>
+          <PriceCompare />
         </section>
 
         <section className="space-y-4">
