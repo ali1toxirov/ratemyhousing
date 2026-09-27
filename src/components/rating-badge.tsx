@@ -5,8 +5,8 @@ export function RatingBadge({ value, size = "md" }: { value: number; size?: "md"
   return (
     <div
       className={cn(
-        "grid shrink-0 place-items-center rounded-xl font-heading font-bold tabular-nums",
-        size === "lg" ? "size-20 text-4xl" : "size-12 text-lg",
+        "grid shrink-0 place-items-center rounded-lg font-heading font-bold tabular-nums",
+        size === "lg" ? "size-16 text-3xl" : "h-8 min-w-8 px-1.5 text-sm",
         ratingColor(value),
       )}
     >

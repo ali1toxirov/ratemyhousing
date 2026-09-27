@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { housing, mealPlanRequired, monthlyEstimate, requiredMealPlan } from "@/data/housing";
+import { housing, layoutMonthlyShare, mealPlanRequired, monthlyEstimate, requiredMealPlan } from "@/data/housing";
 import { cn } from "@/lib/utils";
 
 const fields = [
@@ -22,9 +22,16 @@ export function BudgetCalculator() {
   );
   const [budget, setBudget] = useState(1500);
 
+  const [layoutIndex, setLayoutIndex] = useState(0);
+
   const place = housing.find((h) => h.slug === slug)!;
-  const rent = monthlyEstimate(place);
+  const layout = place.layouts[layoutIndex] ?? place.layouts[0];
+  const rent = layoutMonthlyShare(place, layout);
   const mealPlan = mealPlanRequired(place) ? Math.round(requiredMealPlan.semester / 4.5) : 0;
+  const fmt = (n: number) => `$${n.toLocaleString("en-US")}`;
+  const layoutPrice = layout.min === layout.max ? fmt(layout.min) : `${fmt(layout.min)}–${fmt(layout.max)}`;
+  const usesFullRange =
+    place.priceMin !== place.priceMax && layout.min === place.priceMin && layout.max === place.priceMax;
   const total = rent + mealPlan + Object.values(costs).reduce((a, b) => a + b, 0);
   const diff = budget - total;
 
@@ -36,7 +43,10 @@ export function BudgetCalculator() {
           <select
             id="calc-place"
             value={slug}
-            onChange={(e) => setSlug(e.target.value)}
+            onChange={(e) => {
+              setSlug(e.target.value);
+              setLayoutIndex(0);
+            }}
             className="h-10 w-full rounded-lg border bg-background px-3 text-sm"
           >
             {housing.map((h) => (
@@ -45,6 +55,31 @@ export function BudgetCalculator() {
               </option>
             ))}
           </select>
+        </div>
+        <div className="space-y-1.5">
+          <Label htmlFor="calc-layout">Bedrooms</Label>
+          <select
+            id="calc-layout"
+            value={layoutIndex}
+            onChange={(e) => setLayoutIndex(Number(e.target.value))}
+            className="h-10 w-full rounded-lg border bg-background px-3 text-sm"
+          >
+            {place.layouts.map((l, i) => (
+              <option key={l.label} value={i}>
+                {l.label} (~${layoutMonthlyShare(place, l).toLocaleString()}/mo each)
+              </option>
+            ))}
+          </select>
+          <p className="text-xs text-muted-foreground">
+            {layout.splitBetween
+              ? `${layoutPrice} a month for the whole apartment, split ${layout.splitBetween} ways.`
+              : place.priceBasis
+                ? `${layoutPrice} a month for the whole apartment. Living alone, you pay all of it.`
+                : place.pricePeriod === "semester"
+                ? `Temple bills each student ${layoutPrice} a semester, so roommates don't lower your rate.`
+                : `${layoutPrice} a month per person. Each roommate pays their own rent, so this is already your share.`}
+            {usesFullRange ? " The rate for this layout isn't listed separately, so this uses the building's full range." : ""}
+          </p>
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
           {fields.map((f) => (
@@ -82,7 +117,7 @@ export function BudgetCalculator() {
       <div className="flex flex-col justify-between gap-4 rounded-xl bg-foreground p-6 text-background">
         <div className="space-y-3 text-sm">
           <div className="flex justify-between">
-            <span className="text-background/70">Housing (monthly avg)</span>
+            <span className="text-background/70">Your housing share</span>
             <span className="font-semibold">${rent.toLocaleString()}</span>
           </div>
           {mealPlan > 0 && (

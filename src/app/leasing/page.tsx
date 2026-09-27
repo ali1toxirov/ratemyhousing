@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { CheckCircle2, GraduationCap, Home } from "lucide-react";
 import { PageHeader } from "@/components/page-header";
+import { photos } from "@/data/photos";
 
 export const metadata: Metadata = { title: "How to Lease" };
 
@@ -51,7 +52,7 @@ export default function LeasingPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Leasing"
+        photo={photos.gittis}
         title="How to start a lease"
         description="A short explanation of what you need before you apply for a dorm or sign an apartment. This page is information only. It does not submit an application."
       />

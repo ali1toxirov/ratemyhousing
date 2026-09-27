@@ -1,9 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Building2, Car, Footprints, MessageSquare } from "lucide-react";
+import { Car, Footprints, MessageSquare } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { RatingBadge } from "@/components/rating-badge";
+import { StreetView } from "@/components/street-view";
 import { formatPrice, type Housing } from "@/data/housing";
+import { streetViews } from "@/data/street-views";
 import type { RatingSummary } from "@/lib/ratings";
 import { cn } from "@/lib/utils";
 
@@ -12,14 +14,30 @@ export function HousingCover({
   className,
   priority = false,
   sizes = "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+  interactive = false,
 }: {
   housing: Housing;
   className?: string;
   priority?: boolean;
   sizes?: string;
+  /** Lets visitors look around in Street View instead of showing a still cover. */
+  interactive?: boolean;
 }) {
+  const camera = streetViews[housing.slug];
+  const live = !housing.image && camera && interactive;
+
   return (
-    <div className={cn("relative overflow-hidden bg-gradient-to-br", housing.gradient, className)}>
+    <div
+      className={cn(
+        "relative overflow-hidden",
+        housing.image
+          ? "bg-oxblood"
+          : housing.type === "on-campus"
+            ? "bg-primary pattern-windows"
+            : "bg-schist pattern-brick",
+        className,
+      )}
+    >
       {housing.image ? (
         <Image
           src={housing.image.src}
@@ -32,13 +50,21 @@ export function HousingCover({
         />
       ) : (
         <>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(255,255,255,0.18),transparent_55%)]" />
-          <Building2 className="absolute -right-4 -bottom-4 size-32 text-white/10" strokeWidth={1.25} />
+          {camera && (
+            <StreetView
+              camera={camera}
+              interactive={interactive}
+              title={`Google Street View of ${housing.name}, ${housing.address}`}
+            />
+          )}
+          {!live && (
+            <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-transparent" />
+          )}
         </>
       )}
       {housing.image && <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/20" />}
-      <div className="absolute top-3 left-3 flex gap-1.5">
-        <Badge className="bg-white/90 text-foreground hover:bg-white/90">
+      <div className={cn("absolute top-3 left-3 flex gap-1.5", live && "hidden")}>
+        <Badge className="bg-white/90 text-neutral-900 hover:bg-white/90">
           {housing.type === "on-campus" ? "On campus" : "Off campus"}
         </Badge>
         {housing.freshmen && <Badge className="bg-black/40 text-white">Freshman-friendly</Badge>}

@@ -1,0 +1,35 @@
+---
+description: UX standards for RateMyHousing — succinct pages, no information overload
+alwaysApply: true
+---
+
+# UX principles
+
+Every page should help a Temple student make one decision quickly. Say less, and make what's left easy to scan.
+
+## Keep pages light
+- One clear purpose per page and per section. If a section needs a paragraph to explain itself, cut or split it.
+- Lead with what the student needs most (price, walk time, room type). Put details behind a link, a listing page, or a disclosure.
+- Prefer short sentences and plain words. Aim for 1–2 sentences of supporting copy per section.
+- Don't add stats, badges, or callouts unless they change what a student would do. Remove any that don't.
+- Group related controls: one dropdown beats a row of many buttons (e.g. the star-rating filter on /reviews).
+
+## Design requests are not feature requests
+- "Make it look better / less tacky / more organized" means restyle what exists: spacing, hierarchy, alignment, color, grouping.
+- Don't add new sections, charts, or features unless explicitly asked. If a new feature seems useful, suggest it instead of building it.
+
+## Consistency
+- Reuse existing components and patterns (cards, section headings, native selects styled like the pricing calculator).
+- Same spacing rhythm between sections; same heading style on every page.
+- Keep Temple cherry (`--primary`) identical in light and dark mode. Check both modes.
+
+## Clarity and trust
+- Only show facts from official or listed sources; never invent numbers. Label estimates as estimates.
+- Photos must be real and freely licensed (see `src/data/photos.ts`), credited where shown. Never use AI-generated or unrelated photos for a specific building. Listings without a photo show Google's Street View embed (`src/data/street-views.ts`); never download or re-host Google imagery, and keep Google's credits visible.
+- Explain a number in place when it could mislead (e.g. "whole apartment" vs per-bedroom rent).
+- Destructive actions (delete) need a confirm step. Empty states say what to do next.
+
+## Quality floor
+- Works at phone width with no sideways scrolling.
+- Visible focus states, real labels on inputs, readable contrast.
+- Verify UI changes in the browser before calling them done.

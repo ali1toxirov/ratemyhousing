@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { AlertTriangle, PiggyBank } from "lucide-react";
 import { PageHeader } from "@/components/page-header";
+import { photos } from "@/data/photos";
 import { BudgetCalculator } from "./budget-calculator";
 import { PriceCompare } from "./price-compare";
 
@@ -27,7 +28,7 @@ export default function PricingPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Pricing"
+        photo={photos.southEnd}
         title="What does living near Temple actually cost?"
         description="Choose one place on each side."
       />

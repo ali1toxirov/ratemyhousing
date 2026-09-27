@@ -38,11 +38,27 @@ function subscribe(listener: () => void) {
   return () => listeners.delete(listener);
 }
 
-export function addReview(review: Review) {
-  const next = [review, ...readLocal()];
+function writeLocal(next: Review[]) {
   cache = next;
   localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
   listeners.forEach((l) => l());
+}
+
+export function addReview(review: Review) {
+  writeLocal([review, ...readLocal()]);
+}
+
+// Only reviews saved in this browser can be deleted; seed reviews stay.
+export function deleteReview(id: string) {
+  writeLocal(readLocal().filter((r) => r.id !== id));
+}
+
+export function useIsOwnReview(id: string) {
+  return useSyncExternalStore(
+    subscribe,
+    () => readLocal().some((r) => r.id === id),
+    () => false,
+  );
 }
 
 export function useReviews() {

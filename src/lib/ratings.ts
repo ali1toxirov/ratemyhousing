@@ -40,8 +40,8 @@ export function summarize(reviews: Review[]): RatingSummary {
 }
 
 export function ratingColor(value: number) {
-  if (value >= 4) return "bg-emerald-600 text-white";
-  if (value >= 3) return "bg-amber-400 text-amber-950";
-  if (value > 0) return "bg-red-600 text-white";
+  if (value >= 4) return "bg-emerald-800/10 text-emerald-900 dark:bg-emerald-300/15 dark:text-emerald-100";
+  if (value >= 3) return "bg-amber-800/10 text-amber-950 dark:bg-amber-300/15 dark:text-amber-100";
+  if (value > 0) return "bg-red-800/10 text-red-900 dark:bg-red-300/15 dark:text-red-100";
   return "bg-muted text-muted-foreground";
 }

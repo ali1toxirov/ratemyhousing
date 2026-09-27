@@ -9,14 +9,14 @@ export const navLinks = [
   { href: "/guide", label: "Housing Guide" },
 ];
 
-export function Logo() {
+export function Logo({ onDark = false }: { onDark?: boolean }) {
   return (
     <Link href="/" className="flex items-center gap-2 font-heading text-lg font-bold tracking-tight">
       <span className="grid size-8 place-items-center rounded-lg bg-primary text-primary-foreground">
         <Building2 className="size-4.5" />
       </span>
       <span>
-        RateMy<span className="text-primary">Housing</span>
+        RateMy<span className={onDark ? "text-[#f4c7cf]" : "text-primary"}>Housing</span>
       </span>
     </Link>
   );

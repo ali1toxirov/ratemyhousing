@@ -62,14 +62,14 @@ export default async function HousingDetailPage({ params }: PageProps<"/housing/
 
   return (
     <>
-      <HousingCover
-        housing={place}
-        priority={Boolean(place.image)}
-        sizes="100vw"
-        className={place.image ? "h-72 sm:h-96" : "h-48 sm:h-64"}
-      />
+      <HousingCover housing={place} priority={Boolean(place.image)} sizes="100vw" interactive className="h-72 sm:h-96" />
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="relative -mt-16 rounded-2xl border bg-card p-6 shadow-sm sm:p-8">
+        <div
+          className={cn(
+            "relative rounded-2xl border bg-card p-6 shadow-sm sm:p-8",
+            place.image ? "-mt-16" : "mt-6",
+          )}
+        >
           <Link href="/housing" className="mb-4 inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
             <ArrowLeft className="size-4" /> All housing
           </Link>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { CheckCircle2, ShieldCheck, ThumbsDown, ThumbsUp } from "lucide-react";
 import { PageHeader } from "@/components/page-header";
+import { photos } from "@/data/photos";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 export const metadata: Metadata = { title: "Housing Guide" };
@@ -64,7 +65,7 @@ export default function GuidePage() {
   return (
     <>
       <PageHeader
-        eyebrow="Housing guide"
+        photo={photos.bellTower}
         title="Everything you need to know about living at Temple"
         description="Deadlines, on- versus off-campus trade-offs, a packing list, and answers to the questions every new Owl asks."
       />

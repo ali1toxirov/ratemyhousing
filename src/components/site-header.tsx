@@ -1,19 +1,20 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { Menu, Moon, Search, Sun } from "lucide-react";
 import { Logo, navLinks } from "@/components/logo";
 import { buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { THEME_COOKIE } from "@/lib/theme";
 import { cn } from "@/lib/utils";
 
 function toggleTheme() {
   const next = !document.documentElement.classList.contains("dark");
   document.documentElement.classList.toggle("dark", next);
-  localStorage.setItem("ratemyhousing-theme", next ? "dark" : "light");
+  document.cookie = `${THEME_COOKIE}=${next ? "dark" : "light"}; path=/; max-age=31536000; samesite=lax`;
 }
 
 function ThemeToggle() {
@@ -35,12 +36,14 @@ function ThemeToggle() {
 
 function HeaderSearch({ className }: { className?: string }) {
   const pathname = usePathname();
-  const [query, setQuery] = useState("");
-
-  useEffect(() => {
-    const current = new URLSearchParams(window.location.search).get("q") ?? "";
-    setQuery(pathname === "/housing" ? current : "");
-  }, [pathname]);
+  const searchParams = useSearchParams();
+  const urlQuery = pathname === "/housing" ? (searchParams.get("q") ?? "") : "";
+  const [query, setQuery] = useState(urlQuery);
+  const [syncedQuery, setSyncedQuery] = useState(urlQuery);
+  if (urlQuery !== syncedQuery) {
+    setSyncedQuery(urlQuery);
+    setQuery(urlQuery);
+  }
 
   return (
     <form action="/housing" className={cn("relative min-w-0", className)}>
@@ -85,7 +88,9 @@ export function SiteHeader() {
           </nav>
 
           <div className="ml-auto flex shrink-0 items-center gap-2">
-            <HeaderSearch className="hidden w-36 sm:block xl:w-48" />
+            <Suspense fallback={<div className="hidden w-36 sm:block xl:w-48" />}>
+              <HeaderSearch className="hidden w-36 sm:block xl:w-48" />
+            </Suspense>
             <Link href="/reviews#write" className={cn(buttonVariants({ size: "lg" }), "hidden px-4 xl:inline-flex")}>
               Write a review
             </Link>
@@ -124,7 +129,9 @@ export function SiteHeader() {
           </Sheet>
           </div>
         </div>
-        <HeaderSearch className="pb-3 sm:hidden" />
+        <Suspense fallback={null}>
+          <HeaderSearch className="pb-3 sm:hidden" />
+        </Suspense>
       </div>
     </header>
   );

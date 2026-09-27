@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/page-header";
+import { photos } from "@/data/photos";
 import { HousingBrowser } from "./housing-browser";
 
 export const metadata: Metadata = { title: "Browse Housing" };
@@ -12,7 +13,7 @@ export default async function HousingPage({ searchParams }: PageProps<"/housing"
   return (
     <>
       <PageHeader
-        eyebrow="Browse housing"
+        photo={photos.cherryBlossoms}
         title="Every place to live near Main Campus"
         description="Filter residence halls and apartments by type, price, and distance, then dig into real student reviews."
       />

@@ -2,14 +2,17 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ThumbsDown, ThumbsUp } from "lucide-react";
+import { ThumbsDown, ThumbsUp, Trash2 } from "lucide-react";
 import { Stars } from "@/components/stars";
 import { categoryLabels, type CategoryRatings, type Review } from "@/data/reviews";
 import { getHousing } from "@/data/housing";
+import { deleteReview, useIsOwnReview } from "@/lib/reviews-store";
 import { cn } from "@/lib/utils";
 
 export function ReviewCard({ review, showHousing = false }: { review: Review; showHousing?: boolean }) {
   const [voted, setVoted] = useState(false);
+  const [confirming, setConfirming] = useState(false);
+  const isOwn = useIsOwnReview(review.id);
   const place = getHousing(review.housingSlug);
   const date = new Date(`${review.date}T12:00:00`).toLocaleDateString("en-US", {
     month: "short",
@@ -57,17 +60,49 @@ export function ReviewCard({ review, showHousing = false }: { review: Review; sh
         <span>
           <span className="font-medium text-foreground">{review.author}</span> · {review.year} · {date}
         </span>
-        <button
-          type="button"
-          onClick={() => setVoted((v) => !v)}
-          className={cn(
-            "flex items-center gap-1 rounded-md px-2 py-1 transition-colors hover:bg-muted",
-            voted && "text-primary",
+        <div className="flex items-center gap-1">
+          {isOwn &&
+            (confirming ? (
+              <span className="flex items-center gap-1">
+                <span className="font-medium text-foreground">Delete this review?</span>
+                <button
+                  type="button"
+                  onClick={() => deleteReview(review.id)}
+                  className="rounded-md px-2 py-1 font-medium text-destructive transition-colors hover:bg-destructive/10"
+                >
+                  Delete
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setConfirming(false)}
+                  className="rounded-md px-2 py-1 transition-colors hover:bg-muted"
+                >
+                  Cancel
+                </button>
+              </span>
+            ) : (
+              <button
+                type="button"
+                onClick={() => setConfirming(true)}
+                className="flex items-center gap-1 rounded-md px-2 py-1 transition-colors hover:bg-muted hover:text-destructive"
+              >
+                <Trash2 className="size-3.5" /> Delete
+              </button>
+            ))}
+          {!confirming && (
+            <button
+              type="button"
+              onClick={() => setVoted((v) => !v)}
+              className={cn(
+                "flex items-center gap-1 rounded-md px-2 py-1 transition-colors hover:bg-muted",
+                voted && "text-primary",
+              )}
+            >
+              <ThumbsUp className={cn("size-3.5", voted && "fill-current")} />
+              Helpful ({review.helpful + (voted ? 1 : 0)})
+            </button>
           )}
-        >
-          <ThumbsUp className={cn("size-3.5", voted && "fill-current")} />
-          Helpful ({review.helpful + (voted ? 1 : 0)})
-        </button>
+        </div>
       </div>
     </article>
   );

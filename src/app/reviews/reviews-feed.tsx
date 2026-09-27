@@ -9,48 +9,61 @@ import { housing } from "@/data/housing";
 import { useReviews } from "@/lib/reviews-store";
 import { cn } from "@/lib/utils";
 
-type Filter = "all" | "on-campus" | "off-campus" | 1 | 2 | 3 | 4 | 5;
+type Place = "all" | "on-campus" | "off-campus";
 
-const filters: { value: Filter; label: string }[] = [
+const places: { value: Place; label: string }[] = [
   { value: "all", label: "All reviews" },
   { value: "on-campus", label: "On campus" },
   { value: "off-campus", label: "Off campus" },
-  { value: 5, label: "5 stars" },
-  { value: 4, label: "4 stars" },
-  { value: 3, label: "3 stars" },
-  { value: 2, label: "2 stars" },
-  { value: 1, label: "1 star" },
 ];
+
+const starOptions = [5, 4, 3, 2, 1];
 
 const typeOf = Object.fromEntries(housing.map((h) => [h.slug, h.type]));
 
 export function ReviewsFeed() {
   const reviews = useReviews();
-  const [filter, setFilter] = useState<Filter>("all");
+  const [place, setPlace] = useState<Place>("all");
+  const [stars, setStars] = useState(0);
 
-  const shown = reviews.filter((r) => {
-    if (filter === "on-campus" || filter === "off-campus") return typeOf[r.housingSlug] === filter;
-    if (typeof filter === "number") return r.overall === filter;
-    return true;
-  });
+  const shown = reviews.filter(
+    (r) => (place === "all" || typeOf[r.housingSlug] === place) && (stars === 0 || r.overall === stars),
+  );
 
   return (
     <div className="grid gap-8 lg:grid-cols-[1fr_300px]">
       <div className="space-y-4">
-        <div className="flex flex-wrap gap-2">
-          {filters.map((f) => (
-            <button
-              key={f.value}
-              type="button"
-              onClick={() => setFilter(f.value)}
-              className={cn(
-                "rounded-full border px-3.5 py-1.5 text-sm font-medium transition-colors",
-                filter === f.value ? "border-primary bg-primary text-primary-foreground" : "hover:bg-muted",
-              )}
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="flex flex-wrap gap-2">
+            {places.map((p) => (
+              <button
+                key={p.value}
+                type="button"
+                onClick={() => setPlace(p.value)}
+                className={cn(
+                  "rounded-full border px-3.5 py-1.5 text-sm font-medium transition-colors",
+                  place === p.value ? "border-primary bg-primary text-primary-foreground" : "hover:bg-muted",
+                )}
+              >
+                {p.label}
+              </button>
+            ))}
+          </div>
+          <label className="flex items-center gap-2 text-sm font-medium">
+            Rating
+            <select
+              value={stars}
+              onChange={(e) => setStars(Number(e.target.value))}
+              className="h-9 rounded-lg border bg-background px-3 text-sm"
             >
-              {f.label}
-            </button>
-          ))}
+              <option value={0}>All ratings</option>
+              {starOptions.map((n) => (
+                <option key={n} value={n}>
+                  {n} {n === 1 ? "star" : "stars"}
+                </option>
+              ))}
+            </select>
+          </label>
         </div>
         {shown.length === 0 ? (
           <p className="rounded-2xl border border-dashed py-16 text-center text-sm text-muted-foreground">

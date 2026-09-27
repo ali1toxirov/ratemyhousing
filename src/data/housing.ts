@@ -1,5 +1,13 @@
 export type HousingType = "on-campus" | "off-campus";
 
+export type Layout = {
+  label: string;
+  min: number;
+  max: number;
+  /** Set when the price is for the whole unit, split evenly between this many roommates. */
+  splitBetween?: number;
+};
+
 export type Housing = {
   slug: string;
   name: string;
@@ -13,13 +21,14 @@ export type Housing = {
   /** Set when the range is not a per-student or per-bedroom price. */
   priceBasis?: string;
   roomTypes: string[];
+  /** Layouts for the budget calculator, priced in the same period as the listing. */
+  layouts: Layout[];
   amenities: string[];
   bestFor: string;
   description: string;
   /** A short leasing tip shown on the listing. */
   tip?: string;
   freshmen: boolean;
-  gradient: string;
   /** Where to apply or start a lease. Omitted when there is no public site. */
   website?: { url: string; label: string };
   /** Freely licensed photo. Omitted when none is available. */
@@ -65,6 +74,11 @@ export const housing: Housing[] = [
     priceMax: 8715,
     pricePeriod: "semester",
     roomTypes: ["1-bedroom, single or double", "2-bedroom double", "3-bedroom, single or double"],
+    layouts: [
+      { label: "1-bedroom apartment", min: 7270, max: 8715 },
+      { label: "2-bedroom apartment", min: 7270, max: 8715 },
+      { label: "3-bedroom apartment", min: 7270, max: 8715 },
+    ],
     amenities: ["A/C", "Full kitchen", "Private bathroom", "Dining hall on site", "Laundry in building", "Skyline views"],
     bestFor: "Students who want an on-campus apartment on Broad Street",
     description:
@@ -78,7 +92,6 @@ export const housing: Housing[] = [
       creditHref: "https://commons.wikimedia.org/wiki/File:Morgan_Hall_North_from_Morgan_Hall_South_in_2016.jpg",
     },
     parking: campusParking,
-    gradient: "from-rose-700 to-red-900",
   },
   {
     slug: "1300-residence-hall",
@@ -91,6 +104,10 @@ export const housing: Housing[] = [
     priceMax: 7978,
     pricePeriod: "semester",
     roomTypes: ["Double suite", "Studio", "Apartment", "Single", "Quad"],
+    layouts: [
+      { label: "Suite or studio (floors 1–3)", min: 6041, max: 7978 },
+      { label: "Apartment with kitchen (floors 4–5)", min: 6041, max: 7978 },
+    ],
     amenities: ["A/C", "Private bathroom", "Kitchens on floors 4–5", "Laundry in building", "Study lounges"],
     bestFor: "First-years who want suite living, or returning students who want a kitchen",
     description:
@@ -98,7 +115,6 @@ export const housing: Housing[] = [
     freshmen: true,
     website: { url: "https://studentaffairs.temple.edu/housing", label: "Apply for housing" },
     parking: campusParking,
-    gradient: "from-red-800 to-rose-950",
   },
   {
     slug: "johnson-hardwick",
@@ -111,6 +127,10 @@ export const housing: Housing[] = [
     priceMax: 5726,
     pricePeriod: "semester",
     roomTypes: ["Double", "Quad", "4-person, 2-bedroom"],
+    layouts: [
+      { label: "Shared room (double)", min: 5158, max: 5158 },
+      { label: "Single room", min: 5726, max: 5726 },
+    ],
     amenities: ["A/C", "Community bathrooms", "Esposito Dining Hall", "Laundry in building", "Floor lounges"],
     bestFor: "First-years who want a traditional hall at the lowest on-campus rate",
     description:
@@ -118,7 +138,6 @@ export const housing: Housing[] = [
     freshmen: true,
     website: { url: "https://studentaffairs.temple.edu/housing", label: "Apply for housing" },
     parking: campusParking,
-    gradient: "from-stone-600 to-stone-900",
   },
   {
     slug: "white-hall",
@@ -131,6 +150,10 @@ export const housing: Housing[] = [
     priceMax: 5958,
     pricePeriod: "semester",
     roomTypes: ["2-person studio", "4-person, 2-bedroom suite"],
+    layouts: [
+      { label: "2-person studio", min: 5958, max: 5958 },
+      { label: "4-person, 2-bedroom suite", min: 5958, max: 5958 },
+    ],
     amenities: ["A/C", "Suite bathroom", "Laundry in building", "Bike storage", "Community kitchen"],
     bestFor: "First-years who want a suite with their own bathroom",
     description:
@@ -138,7 +161,6 @@ export const housing: Housing[] = [
     freshmen: true,
     website: { url: "https://studentaffairs.temple.edu/housing", label: "Apply for housing" },
     parking: campusParking,
-    gradient: "from-red-700 to-orange-900",
   },
   {
     slug: "temple-towers",
@@ -151,6 +173,12 @@ export const housing: Housing[] = [
     priceMax: 8475,
     pricePeriod: "semester",
     roomTypes: ["Double", "Large double", "Double with its own bath", "Single", "Single in a 2-bedroom", "3- and 4-bedroom apartments"],
+    layouts: [
+      { label: "1-bedroom apartment", min: 6556, max: 8475 },
+      { label: "2-bedroom apartment", min: 6556, max: 8475 },
+      { label: "3-bedroom apartment", min: 6556, max: 8475 },
+      { label: "4-bedroom apartment", min: 6556, max: 8475 },
+    ],
     amenities: ["Full kitchen", "Bathroom in the apartment", "A/C", "Laundry in building", "Study lounges"],
     bestFor: "Students who want an on-campus apartment with a kitchen",
     description:
@@ -162,7 +190,6 @@ export const housing: Housing[] = [
       detail:
         "The Temple Towers lot is one of Temple's overnight lots. A permit is still $426 per semester and is not included in the room rate.",
     },
-    gradient: "from-rose-800 to-pink-950",
   },
   {
     slug: "1940-residence-hall",
@@ -175,6 +202,10 @@ export const housing: Housing[] = [
     priceMax: 6104,
     pricePeriod: "semester",
     roomTypes: ["2-person, 1-bedroom suite", "4-person, 2-bedroom suite"],
+    layouts: [
+      { label: "2-person, 1-bedroom suite", min: 6104, max: 6104 },
+      { label: "4-person, 2-bedroom suite", min: 6104, max: 6104 },
+    ],
     amenities: ["A/C", "Suite bathroom", "Laundry in building", "Study lounges", "Community kitchen"],
     bestFor: "First-years who want a suite on Liacouras Walk",
     description:
@@ -182,7 +213,6 @@ export const housing: Housing[] = [
     freshmen: true,
     website: { url: "https://studentaffairs.temple.edu/housing", label: "Apply for housing" },
     parking: campusParking,
-    gradient: "from-red-900 to-stone-900",
   },
   {
     slug: "the-edge",
@@ -195,6 +225,10 @@ export const housing: Housing[] = [
     priceMax: 1800,
     pricePeriod: "month",
     roomTypes: ["Studio", "2-bed / 2-bath, private rooms", "2-bed with a den or office"],
+    layouts: [
+      { label: "Studio", min: 949, max: 1800 },
+      { label: "2-bedroom, private room", min: 949, max: 1800 },
+    ],
     amenities: ["Furnished", "Fitness center", "Laundry in building", "Community Wi-Fi"],
     bestFor: "Students who want a furnished apartment at Avenue North",
     description:
@@ -209,7 +243,6 @@ export const housing: Housing[] = [
       detail:
         "Avery Philly has offered on-site parking for a fee, and it is not included in rent. There is no current public price, so confirm a spot and the rate before you sign.",
     },
-    gradient: "from-slate-700 to-slate-900",
   },
   {
     slug: "the-view-at-montgomery",
@@ -222,6 +255,13 @@ export const housing: Housing[] = [
     priceMax: 2129,
     pricePeriod: "month",
     roomTypes: ["Studio", "2-bed / 1-bath, private", "2-bed / 2-bath, shared or private", "3-bed / 2-bath, shared or private", "4-bed / 2-bath"],
+    layouts: [
+      { label: "Studio", min: 849, max: 2129 },
+      { label: "2-bedroom, private room", min: 849, max: 2129 },
+      { label: "3-bedroom, shared room", min: 849, max: 849 },
+      { label: "3-bedroom, private room", min: 849, max: 2129 },
+      { label: "4-bedroom, private room", min: 849, max: 2129 },
+    ],
     amenities: ["Furnished", "Sky lounge", "24/7 fitness center", "Study rooms", "24-hour front desk"],
     bestFor: "Students who want a furnished high-rise steps from campus",
     tip: "Before you sign, check their website and call or text them. They sometimes have special offers, like a 10-month lease, that are not listed with the regular rent.",
@@ -234,7 +274,6 @@ export const housing: Housing[] = [
       detail:
         "Gated parking is available and not included in rent. A surface-lot spot is listed around $169 a month.",
     },
-    gradient: "from-sky-800 to-indigo-950",
   },
   {
     slug: "vantage",
@@ -247,6 +286,14 @@ export const housing: Housing[] = [
     priceMax: 2699,
     pricePeriod: "month",
     roomTypes: ["Studio", "1-bed / 1-bath", "2-bed / 1-bath", "2-bed / 2-bath, shared or private", "3-bed / 2-bath", "4-bed / 2-bath"],
+    layouts: [
+      { label: "Studio", min: 929, max: 2699 },
+      { label: "1-bedroom", min: 929, max: 2699 },
+      { label: "2-bedroom, shared room", min: 929, max: 929 },
+      { label: "2-bedroom, private room", min: 929, max: 2699 },
+      { label: "3-bedroom, private room", min: 929, max: 2699 },
+      { label: "4-bedroom, private room", min: 929, max: 2699 },
+    ],
     amenities: ["Furnished", "18th-floor sky lounge", "Fitness center", "Laundry on each floor", "Wi-Fi"],
     bestFor: "Students who want a furnished high-rise with utilities in the rent",
     description:
@@ -258,7 +305,6 @@ export const housing: Housing[] = [
       detail:
         "A surface-lot spot is listed around $169 a month, and other options run closer to $199. Parking is not included in rent.",
     },
-    gradient: "from-zinc-700 to-neutral-900",
   },
   {
     slug: "oxford-village",
@@ -272,6 +318,11 @@ export const housing: Housing[] = [
     pricePeriod: "month",
     priceBasis: "whole apartment",
     roomTypes: ["1-bed", "2-bed", "3-bed"],
+    layouts: [
+      { label: "1-bedroom, just you", min: 1225, max: 1225 },
+      { label: "2-bedroom, 2 roommates", min: 1425, max: 1425, splitBetween: 2 },
+      { label: "3-bedroom, 3 roommates", min: 1815, max: 1815, splitBetween: 3 },
+    ],
     amenities: ["Furnished options", "Gated parking ($100/mo)", "Fitness center", "Laundry rooms", "A/C"],
     bestFor: "Students who want a regular apartment within two blocks of campus",
     description:
@@ -285,7 +336,6 @@ export const housing: Housing[] = [
       summary: "Paid · $100/month",
       detail: "Gated parking is $100 a month per space. It is not included in rent.",
     },
-    gradient: "from-emerald-800 to-teal-950",
   },
   {
     slug: "university-village",
@@ -298,6 +348,14 @@ export const housing: Housing[] = [
     priceMax: 1494,
     pricePeriod: "month",
     roomTypes: ["1-bed / 1-bath", "2-bed / 1-bath, private rooms", "2-bed / 2-bath, four people", "2-bed / 2-bath, private rooms", "3-bed / 3-bath", "4-bed / 4-bath"],
+    layouts: [
+      { label: "1-bedroom", min: 1494, max: 1494 },
+      { label: "2-bedroom, private room (1 bath)", min: 479, max: 1494 },
+      { label: "2-bedroom, private room (2 baths)", min: 979, max: 979 },
+      { label: "2-bedroom, shared room (4 people)", min: 479, max: 479 },
+      { label: "3-bedroom, private room", min: 479, max: 1494 },
+      { label: "4-bedroom, private room", min: 479, max: 1494 },
+    ],
     amenities: ["Furnished", "24-hour fitness center", "Academic Success Center", "Internet included", "Individual leases"],
     bestFor: "Students who want a furnished apartment with a lower per-bedroom rent",
     description:
@@ -312,7 +370,6 @@ export const housing: Housing[] = [
       detail:
         "University Village has assigned parking and charges for it separately from rent. The current price is not listed publicly, so confirm it with the leasing office.",
     },
-    gradient: "from-indigo-800 to-slate-950",
   },
   {
     slug: "temple-crossing",
@@ -325,6 +382,10 @@ export const housing: Housing[] = [
     priceMax: 800,
     pricePeriod: "month",
     roomTypes: ["2-bed, private or shared", "4-bed, private or shared"],
+    layouts: [
+      { label: "2-bedroom", min: 675, max: 800 },
+      { label: "4-bedroom", min: 675, max: 800 },
+    ],
     amenities: ["Furnished", "Smart locks", "Fitness center", "Study rooms", "Movie theater", "Laundry on site"],
     bestFor: "Students who want a furnished apartment about 8 minutes from campus",
     description:
@@ -335,7 +396,6 @@ export const housing: Housing[] = [
       summary: "Not listed with rent",
       detail: "Current listings do not say whether Temple Crossing includes a parking spot or what it costs. Ask the office before you count on a car.",
     },
-    gradient: "from-violet-800 to-purple-950",
   },
   {
     slug: "kardon-atlantic",
@@ -348,6 +408,11 @@ export const housing: Housing[] = [
     priceMax: 900,
     pricePeriod: "month",
     roomTypes: ["1-bed", "2-bed", "3-bed", "4-bed", "5-bed"],
+    layouts: [
+      { label: "2-bedroom", min: 820, max: 860 },
+      { label: "4-bedroom", min: 825, max: 850 },
+      { label: "5-bedroom", min: 800, max: 900 },
+    ],
     amenities: ["A/C", "Fitness center", "Laundry rooms", "24/7 front desk", "Study areas"],
     bestFor: "Students who want a 2- to 5-bedroom apartment near the train station",
     description:
@@ -358,7 +423,6 @@ export const housing: Housing[] = [
       summary: "Not listed with rent",
       detail: "Current listings do not include a parking spot with the apartment. Ask the office before you count on a car.",
     },
-    gradient: "from-cyan-800 to-slate-950",
   },
   {
     slug: "beech-international",
@@ -371,6 +435,10 @@ export const housing: Housing[] = [
     priceMax: 1350,
     pricePeriod: "month",
     roomTypes: ["1-bed", "2-bed"],
+    layouts: [
+      { label: "1-bedroom", min: 1350, max: 1350 },
+      { label: "2-bedroom", min: 725, max: 1350 },
+    ],
     amenities: ["Furnished", "Utilities included", "A/C", "Laundry on site"],
     bestFor: "Students who want utilities bundled in a building next to campus",
     description:
@@ -384,7 +452,6 @@ export const housing: Housing[] = [
       summary: "Not listed with rent",
       detail: "Current listings do not say whether Beech International Village includes a parking spot or what it costs. Ask the office before you count on a car.",
     },
-    gradient: "from-teal-800 to-emerald-950",
   },
   {
     slug: "university-apartments",
@@ -397,6 +464,10 @@ export const housing: Housing[] = [
     priceMax: 1295,
     pricePeriod: "month",
     roomTypes: ["1-bed", "2-bed"],
+    layouts: [
+      { label: "1-bedroom", min: 1195, max: 1295 },
+      { label: "2-bedroom", min: 795, max: 900 },
+    ],
     amenities: ["In-unit washer and dryer", "Private bathroom per bedroom", "A/C", "Fitness room"],
     bestFor: "Roommates who want a washer and dryer in the apartment",
     description:
@@ -410,7 +481,6 @@ export const housing: Housing[] = [
       summary: "Paid · $100/month",
       detail: "Assigned parking is $100 a month and is not included in the rent.",
     },
-    gradient: "from-orange-800 to-rose-950",
   },
 ];
 
@@ -495,4 +565,10 @@ export function matchesHousingQuery(h: Housing, query: string) {
   if (words.length === 0) return true;
   const text = housingSearchText(h);
   return words.every((word) => text.includes(word));
+}
+
+export function layoutMonthlyShare(h: Housing, l: Layout) {
+  const avg = (l.min + l.max) / 2;
+  const monthly = h.pricePeriod === "semester" ? avg / 4.5 : avg;
+  return Math.round(monthly / (l.splitBetween ?? 1));
 }

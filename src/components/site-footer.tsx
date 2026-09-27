@@ -10,22 +10,22 @@ const official = [
 ];
 
 const linkClass =
-  "rounded-sm hover:text-foreground focus-visible:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
+  "rounded-sm hover:text-white focus-visible:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
 
 export function SiteFooter() {
   return (
-    <footer className="mt-24 border-t bg-muted/40">
+    <footer className="mt-24 border-t-4 border-primary bg-oxblood text-white">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-[2fr_1fr_1fr]">
         <div className="space-y-3">
-          <Logo />
-          <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">
+          <Logo onDark />
+          <p className="max-w-sm text-sm leading-relaxed text-white/70">
             Student reviews of dorms and apartments around Temple’s Main Campus. Compare a place, then confirm the
             details with Temple Housing or the leasing office.
           </p>
         </div>
         <div>
           <h2 className="mb-3 text-sm font-semibold">Explore</h2>
-          <ul className="space-y-2 text-sm text-muted-foreground">
+          <ul className="space-y-2 text-sm text-white/70">
             {navLinks.map((l) => (
               <li key={l.href}>
                 <Link href={l.href} className={linkClass}>
@@ -37,7 +37,7 @@ export function SiteFooter() {
         </div>
         <div>
           <h2 className="mb-3 text-sm font-semibold">Official resources</h2>
-          <ul className="space-y-2 text-sm text-muted-foreground">
+          <ul className="space-y-2 text-sm text-white/70">
             {official.map((item) => (
               <li key={item.href}>
                 <a href={item.href} target="_blank" rel="noreferrer" className={linkClass}>
@@ -48,8 +48,9 @@ export function SiteFooter() {
           </ul>
         </div>
       </div>
-      <div className="border-t py-5 text-center text-xs text-muted-foreground">
-        Not affiliated with Temple University. Built at OwlHacks.
+      <div className="border-t border-white/10 py-5 text-center text-xs text-white/60">
+        Not affiliated with Temple University. Built at OwlHacks. Prices are estimates. Always confirm with the
+        property.
       </div>
     </footer>
   );
