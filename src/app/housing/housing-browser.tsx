@@ -32,13 +32,11 @@ export function HousingBrowser({ initialQuery, initialType }: { initialQuery: st
   const [query, setQuery] = useState(initialQuery);
   const [type, setType] = useState<TypeFilter>(initialType);
   const [sort, setSort] = useState<Sort>("rating");
-  const [freshmenOnly, setFreshmenOnly] = useState(false);
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
     return housing
       .filter((h) => type === "all" || h.type === type)
-      .filter((h) => !freshmenOnly || h.freshmen)
       .filter((h) => matchesHousingQuery(h, q))
       .map((h) => ({ h, summary: summarize(reviews.filter((r) => r.housingSlug === h.slug)) }))
       .sort((a, b) => {
@@ -47,12 +45,11 @@ export function HousingBrowser({ initialQuery, initialType }: { initialQuery: st
         if (sort === "price") return monthlyEstimate(a.h) - monthlyEstimate(b.h);
         return b.h.walkMinutes - a.h.walkMinutes;
       });
-  }, [reviews, query, type, sort, freshmenOnly]);
+  }, [reviews, query, type, sort]);
 
   function clearFilters() {
     setQuery("");
     setType("all");
-    setFreshmenOnly(false);
   }
 
   return (
@@ -84,16 +81,6 @@ export function HousingBrowser({ initialQuery, initialType }: { initialQuery: st
               </button>
             ))}
           </div>
-          <button
-            type="button"
-            onClick={() => setFreshmenOnly((v) => !v)}
-            className={cn(
-              "h-10 rounded-lg border px-3 text-sm font-medium transition-colors",
-              freshmenOnly ? "border-primary bg-accent text-accent-foreground" : "hover:bg-muted",
-            )}
-          >
-            Freshman-friendly
-          </button>
           <Select items={sortItems} value={sort} onValueChange={(v) => v && setSort(v as Sort)}>
             <SelectTrigger className="h-10 w-44" aria-label="Sort by">
               <SelectValue />

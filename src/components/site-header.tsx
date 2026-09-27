@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useState } from "react";
+import { Suspense, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { Menu, Moon, Search, Sun } from "lucide-react";
@@ -62,7 +62,9 @@ function HeaderSearch({ className }: { className?: string }) {
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const menuRef = useRef<{ close: () => void; unmount: () => void } | null>(null);
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
+  const closeMenu = () => menuRef.current?.close();
 
   return (
     <header className="sticky top-0 z-40 border-b bg-background/85 backdrop-blur-md">
@@ -95,7 +97,7 @@ export function SiteHeader() {
               Write a review
             </Link>
             <ThemeToggle />
-          <Sheet>
+          <Sheet actionsRef={menuRef}>
             <SheetTrigger
               className={cn(buttonVariants({ variant: "ghost", size: "icon-lg" }), "lg:hidden")}
               aria-label="Open menu"
@@ -104,7 +106,7 @@ export function SiteHeader() {
             </SheetTrigger>
             <SheetContent side="right">
               <SheetHeader>
-                <SheetTitle>
+                <SheetTitle onClick={closeMenu}>
                   <Logo />
                 </SheetTitle>
               </SheetHeader>
@@ -113,6 +115,7 @@ export function SiteHeader() {
                   <Link
                     key={link.href}
                     href={link.href}
+                    onClick={closeMenu}
                     className={cn(
                       "rounded-md px-3 py-2.5 text-base font-medium",
                       isActive(link.href) ? "bg-accent text-accent-foreground" : "hover:bg-muted",
@@ -121,7 +124,7 @@ export function SiteHeader() {
                     {link.label}
                   </Link>
                 ))}
-                <Link href="/reviews#write" className={cn(buttonVariants({ size: "lg" }), "mt-4 h-11")}>
+                <Link href="/reviews#write" onClick={closeMenu} className={cn(buttonVariants({ size: "lg" }), "mt-4 h-11")}>
                   Write a review
                 </Link>
               </nav>

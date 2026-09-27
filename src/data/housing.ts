@@ -550,7 +550,7 @@ export function housingSearchText(h: Housing) {
       guests.summary,
       guests.detail,
       h.priceBasis,
-      h.freshmen ? "freshman first-year freshman-friendly" : "returning students",
+      h.freshmen ? "freshman first-year" : "returning students",
       mealPlanRequired(h) ? "meal plan required 12 meals a week" : "",
     ]
       .filter(Boolean)

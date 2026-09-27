@@ -114,29 +114,29 @@ export function BudgetCalculator() {
         </div>
       </div>
 
-      <div className="flex flex-col justify-between gap-4 rounded-xl bg-foreground p-6 text-background">
+      <div className="flex flex-col justify-between gap-4 rounded-xl border bg-blossom p-6">
         <div className="space-y-3 text-sm">
           <div className="flex justify-between">
-            <span className="text-background/70">Your housing share</span>
+            <span className="text-muted-foreground">Your housing share</span>
             <span className="font-semibold">${rent.toLocaleString()}</span>
           </div>
           {mealPlan > 0 && (
             <div className="flex justify-between gap-3">
-              <span className="text-background/70">Required meal plan</span>
+              <span className="text-muted-foreground">Required meal plan</span>
               <span>${mealPlan.toLocaleString()}</span>
             </div>
           )}
           {fields.map((f) => (
             <div key={f.key} className="flex justify-between">
-              <span className="text-background/70">{f.label}</span>
+              <span className="text-muted-foreground">{f.label}</span>
               <span>${costs[f.key].toLocaleString()}</span>
             </div>
           ))}
         </div>
-        <div className="border-t border-background/20 pt-4">
-          <p className="text-sm text-background/70">Estimated monthly total</p>
+        <div className="border-t-2 border-primary pt-4">
+          <p className="text-sm text-muted-foreground">Estimated monthly total</p>
           <p className="font-heading text-4xl font-bold">${total.toLocaleString()}</p>
-          <p className={cn("mt-2 text-sm font-medium", diff >= 0 ? "text-emerald-300" : "text-red-300")}>
+          <p className={cn("mt-2 text-sm font-medium", diff >= 0 ? "text-emerald-800 dark:text-emerald-200" : "text-red-800 dark:text-red-200")}>
             {diff >= 0
               ? `$${diff.toLocaleString()} under your budget`
               : `$${Math.abs(diff).toLocaleString()} over your budget`}

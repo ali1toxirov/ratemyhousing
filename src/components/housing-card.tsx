@@ -67,7 +67,6 @@ export function HousingCover({
         <Badge className="bg-white/90 text-neutral-900 hover:bg-white/90">
           {housing.type === "on-campus" ? "On campus" : "Off campus"}
         </Badge>
-        {housing.freshmen && <Badge className="bg-black/40 text-white">Freshman-friendly</Badge>}
       </div>
     </div>
   );
