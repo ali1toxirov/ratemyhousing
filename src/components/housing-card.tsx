@@ -1,9 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Building2, Car, Footprints, MessageSquare, UserPlus } from "lucide-react";
+import { Building2, Car, Footprints, MessageSquare } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { RatingBadge } from "@/components/rating-badge";
-import { formatPrice, formatWithRequiredMealPlan, guestPolicy, type Housing } from "@/data/housing";
+import { formatPrice, type Housing } from "@/data/housing";
 import type { RatingSummary } from "@/lib/ratings";
 import { cn } from "@/lib/utils";
 
@@ -56,7 +56,6 @@ export function HousingCard({
   summary: RatingSummary;
   compact?: boolean;
 }) {
-  const withMealPlan = formatWithRequiredMealPlan(housing);
   return (
     <Link
       href={`/housing/${housing.slug}`}
@@ -82,10 +81,6 @@ export function HousingCard({
               <Car className="size-3.5 shrink-0" />
               {housing.parking.summary}
             </p>
-            <p className="flex items-center gap-1 text-xs text-muted-foreground">
-              <UserPlus className="size-3.5 shrink-0" />
-              Guests · {guestPolicy(housing).summary}
-            </p>
           </>
         )}
         {!compact && (
@@ -98,12 +93,6 @@ export function HousingCard({
                 {housing.priceBasis ? ` · ${housing.priceBasis}` : ""}
               </span>
             </p>
-            {withMealPlan && (
-              <p className="mt-0.5 max-w-[14rem] leading-snug">
-                <span className="font-semibold text-foreground">New students {withMealPlan}</span>
-                {" · rent + 12 meals/week"}
-              </p>
-            )}
           </div>
           <span className="flex items-center gap-3">
             <span className="flex items-center gap-1">
